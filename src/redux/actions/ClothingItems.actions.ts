@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { Action } from "./types";
-import { ClothingItem } from '@uark-acm/bho-data-models/lib';
+import { ClothingItem, CreateClothingItemRequest } from '@uark-acm/bho-data-models/lib';
 import Loadable from "../redux-config/loadable";
 import { rootURL } from "../../config/endpoints";
 
@@ -23,7 +23,7 @@ export const fetchClothingItems = () => {
     }
 }
 
-export const createClothingItems = () => {
+export const createClothingItems = (createClothingItemRequest: CreateClothingItemRequest) => {
     return async (dispatch: Dispatch<ClothingItemAction>) => {
 
     }

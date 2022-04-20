@@ -22,14 +22,14 @@ const TestingReduxComponent: FunctionComponent<TestingReduxComponentProps> = (pr
     switch(clothingItems.status)
     {
         case 'loading':
-            console.log('loading');
+            console.log('loading clothing items');
             break;
         case 'success':
-            console.log('success');
+            console.log('success clothing items');
             console.log(clothingItems.data);
             break;
         case 'error':
-            console.log('error');
+            console.log('error clothing items');
             console.log(clothingItems.errorMessage);
             break;
     }

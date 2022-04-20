@@ -11,14 +11,17 @@ const DEFAULT_STATE: ClothingItemsState = {
 	clothingItems: { status: 'loading' },
 };
 
-const clothingItemsReducer = (state = DEFAULT_STATE, action: AnyAction) => {
+const ClothingItemsReducer = (state = DEFAULT_STATE, action: AnyAction) => {
     switch(action.type)
     {
         case Action.FETCH_CLOTHING_ITEMS:
             return { ...state, clothingItems: action.payload };
+        case Action.CREATE_CLOTHING_ITEM:
+            // your logic here
+            break;
         default:
             return state;
     }
 }
 
-export default clothingItemsReducer;
+export default ClothingItemsReducer;
