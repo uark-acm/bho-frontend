@@ -1,3 +1,3 @@
 import { combineReducers } from "redux";
-
-export default combineReducers({});
+import ClothingItemsReducer from "./ClothingItems.reducer";
+export default combineReducers({clothingItems: ClothingItemsReducer});
