@@ -14,10 +14,10 @@ const DEFAULT_STATE: OrdersState = {
 const OrdersReducer = (state = DEFAULT_STATE, action: AnyAction) => {
     switch(action.type)
     {
-        case Action.FETCH_CLOTHING_ITEMS:
+        case Action.FETCH_ORDERS:
             // your logic here
             break;
-        case Action.CREATE_CLOTHING_ITEM:
+        case Action.CREATE_ORDER:
             // your logic here
             break;
         default:
