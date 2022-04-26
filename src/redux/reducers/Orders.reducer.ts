@@ -15,8 +15,7 @@ const OrdersReducer = (state = DEFAULT_STATE, action: AnyAction) => {
     switch(action.type)
     {
         case Action.FETCH_ORDERS:
-            // your logic here
-            break;
+            return { ...state, orders: action.payload };
         case Action.CREATE_ORDER:
             // your logic here
             break;
