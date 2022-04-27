@@ -16,9 +16,10 @@ const OrdersReducer = (state = DEFAULT_STATE, action: AnyAction) => {
     {
         case Action.FETCH_ORDERS:
             return { ...state, orders: action.payload };
+            // your logic here
         case Action.CREATE_ORDER:
             // your logic here
-            break;
+            return { ...state, orders: action.payload };
         default:
             return state;
     }
