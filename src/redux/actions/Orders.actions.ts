@@ -9,13 +9,21 @@ type OrderAction = {
 	payload: Loadable<Order[]>;
 };
 
-export const fetchClothingItems = () => {
+export const fetchOrders = () => {
     return async (dispatch: Dispatch<OrderAction>) => {
-        //fetch from rootUrl/orders
+        dispatch({type: Action.FETCH_ORDERS, payload: {status: 'loading'}});
+        try {
+            const data: Order[] = await (await fetch(`${rootURL}/orders`)).json();
+            dispatch({type: Action.FETCH_ORDERS, payload: {status: 'success', data: data}});
+        }
+        catch(error){
+            dispatch({type: Action.FETCH_ORDERS, payload: {status: 'error', errorMessage: (error as Error).message}})
+        }
+        
     }
 }
 
-export const createClothingItems = (CreateOrderRequest: CreateOrderRequest) => {
+export const createOrders = (CreateOrderRequest: CreateOrderRequest) => {
     return async (dispatch: Dispatch<OrderAction>) => {
 
     }
