@@ -11,7 +11,7 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (props: New
         itemPhoto: "",
     })
 
-    const changeHandler = e => {
+    const changeHandler = (e: React.ChangeEvent<any>) => {
         setItemValues({...itemValues, [e.target.name]: e.target.value})
     }
 
