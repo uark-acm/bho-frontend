@@ -6,7 +6,7 @@ import './ItemCard.css'
 
 type ItemCardProps = {item: BHOItem}
 
-const ItemCard: FunctionComponent<ItemCardProps> = (props: ItemCardProps) => {
+export const ItemCard: FunctionComponent<ItemCardProps> = (props: ItemCardProps) => {
     return (
     <Container className="container">
         <Card className="card" style={{backgroundColor: props.item.in_stock ? '#FFFFFF' : '#B3B3B3'}}>
@@ -31,5 +31,3 @@ const ItemCard: FunctionComponent<ItemCardProps> = (props: ItemCardProps) => {
     </Container>
     );
 }
-
-export default ItemCard;
