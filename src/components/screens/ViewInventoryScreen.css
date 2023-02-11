@@ -1,0 +1,15 @@
+.inputBarContainer {
+    height: 58px;
+    width: 83.8%;
+    margin: 0 auto;
+    padding-top: 62px;
+    display: flex;
+  }
+  
+.searchButton {
+    height: 56px;
+    width: 100%;
+    background-color: #A51E36 !important;
+    border-radius: 4px !important;
+}
+  

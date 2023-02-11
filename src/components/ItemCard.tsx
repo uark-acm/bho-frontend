@@ -15,7 +15,7 @@ const ItemCard: FunctionComponent<ItemCardProps> = (props: ItemCardProps) => {
                 image={props.item.image}
                 title="Image"
             >
-                <IconButton color="error" className="addButton" onClick={() => alert('pls add prettier jack')}>
+                <IconButton className="addButton" onClick={() => alert('pls add prettier jack')}>
                     <AddIcon style={{ stroke: "white", scale: "75%", strokeWidth: "1px", color:"white" }}/>
                 </IconButton>
             </CardMedia>
