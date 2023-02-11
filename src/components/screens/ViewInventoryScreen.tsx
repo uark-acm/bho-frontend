@@ -45,7 +45,7 @@ const ViewInventoryScreen: FunctionComponent < ViewInventoryScreenProps > = () =
                             labelId="size-label"
                             id="size"
                             value={size}
-                            onChange={(e)=>{setSize('test')}}
+                            onChange={(e)=>{setSize(e.target.value)}}
                         >
                             <MenuItem>
                                 <em>None</em>
