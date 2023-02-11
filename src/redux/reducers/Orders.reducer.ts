@@ -1,4 +1,4 @@
-import { BHOItem, Order } from '@uark-acm/bho-data-models/lib';
+import { Order } from '@uark-acm/bho-data-models/lib';
 import { AnyAction } from 'redux';
 import { Action } from '../actions/types';
 import Loadable from '../redux-config/loadable';
