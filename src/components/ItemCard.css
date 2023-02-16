@@ -1,0 +1,55 @@
+/* ItemCard.css */
+
+.container {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 350px;
+    height: 315px;
+    position: relative;
+    border-radius: 16px !important;
+  }
+
+  .image {
+    height: 200px;
+    margin-top: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-radius: 16px;
+    position: relative;
+  }
+
+  .textDiv {
+    margin-top: 16px;
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+  
+  .nameText {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    color: #425466;
+    margin-bottom: 8px
+  }
+
+  .sizeText {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+    color: #27272E;
+    margin-bottom: 24px;
+  }
+  
+  .addButton {
+    position: absolute !important;
+    background-color: #A51E36 !important;
+    top: 11px;
+    right: 9px;
+    border-radius: 9999px !important;
+}

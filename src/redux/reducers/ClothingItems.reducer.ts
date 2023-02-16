@@ -1,10 +1,10 @@
-import { ClothingItem } from '@uark-acm/bho-data-models/lib';
+import { BHOItem } from '@uark-acm/bho-data-models/lib';
 import { AnyAction } from 'redux';
 import { Action } from '../actions/types';
 import Loadable from '../redux-config/loadable';
 
 export interface ClothingItemsState {
-	clothingItems: Loadable<ClothingItem[]>;
+	clothingItems: Loadable<BHOItem[]>;
 }
 
 const DEFAULT_STATE: ClothingItemsState = {

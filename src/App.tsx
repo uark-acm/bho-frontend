@@ -4,7 +4,7 @@ import reducers from './redux/reducers';
 import ReduxThunkMiddleWare from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ViewInventoryScreen from './components/ViewInventoryScreen';
+import ViewInventoryScreen from './components/screens/ViewInventoryScreen';
 import HomeScreen from './components/screens/HomeScreen';
 import NewItemFormScreen from './components/screens/NewItemFormScreen';
 import Header from './components/Header';

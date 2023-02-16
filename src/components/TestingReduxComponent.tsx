@@ -1,4 +1,4 @@
-import { ClothingItem, Order } from "@uark-acm/bho-data-models/lib";
+import { BHOItem, Order } from "@uark-acm/bho-data-models/lib";
 import { FunctionComponent, useEffect } from "react"
 import { fetchClothingItems } from "../redux/actions/ClothingItems.actions";
 import { fetchOrders } from "../redux/actions/Orders.actions";
@@ -11,7 +11,7 @@ type TestingReduxComponentProps = {}
 
 const TestingReduxComponent: FunctionComponent<TestingReduxComponentProps> = (props: TestingReduxComponentProps) => {
     const dispatch = useAppDispatch();
-    const clothingItems: Loadable<ClothingItem[]> = useAppSelector<ClothingItemsState>(
+    const clothingItems: Loadable<BHOItem[]> = useAppSelector<ClothingItemsState>(
         (state) => state.clothingItems
     ).clothingItems;
 
