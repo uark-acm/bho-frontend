@@ -1,9 +1,6 @@
 import React, { useState, FunctionComponent } from "react";
-import { useFormControl } from '@mui/material/FormControl';
-import { Grid, Container, Select, TextField } from "@mui/material";
-import {Box, BoxProps} from "@mui/system";
-import {alpha, styled} from "@mui/material/styles"
-import { Margin } from "@mui/icons-material";
+import { Grid, Select, TextField, Button } from "@mui/material";
+import {Box} from "@mui/system";
 import './NewItemFormScreen.css';
 
 
@@ -29,9 +26,6 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (props: New
         setItemValues({...itemValues, [e.target.id]: e.target.value})
         console.log(e.target.id, e.target.value)
     }
-
-    const itemCategories = ['Category 1', 'Category 2', 'Category 3'];
-    const itemSizes = ['S', 'M', 'L', 'XL'];
 
     return(
         <Grid container spacing={10}>
@@ -71,7 +65,7 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (props: New
                 <Box  maxWidth="sm" sx={{display: 'flex', width: '100%', height: '50%', alignItems: 'center',justifyContent: 'center', margin: 'auto',  p: 2, border: '2px dashed grey' , borderRadius: 3, fontSize: '15px', flexDirection: 'column'}}>
                     <label>Select an item photo and drop here</label>
                     <label className="gray-label">JPG, PNG or PDF, file size no more than 10MB</label>
-                    <button>Select File</button>
+                    <Button variant='outlined'>Select File</Button>
                 </Box>
                 <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                     <button className="add-item-button" >Add Item </button> 
