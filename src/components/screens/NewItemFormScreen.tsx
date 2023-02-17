@@ -24,7 +24,6 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (props: New
 
     const changeHandler = (e: React.ChangeEvent<any>) => {
         setItemValues({...itemValues, [e.target.id]: e.target.value})
-        console.log(e.target.id, e.target.value)
     }
 
     return(
