@@ -41,15 +41,13 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (props: New
                     
                     <Box sx={textFieldBoxesSx}>
                         <label>Item Category</label>
-                        <TextField size="small" select id="itemCategory" name="itemCategory" variant="filled" onChange={changeHandler}  hiddenLabel fullWidth>
-                            <Select required></Select> 
+                        <TextField size="small" select id="itemCategory" name="itemCategory" variant="filled" onChange={changeHandler}  hiddenLabel fullWidth> 
                         </TextField>
                     </Box>
 
                     <Box sx={textFieldBoxesSx}>
                         <label>Item Size</label> 
                         <TextField  size="small" id="itemSize" name="itemSize" select  variant="filled" hiddenLabel fullWidth onChange={changeHandler}>
-                            <Select required></Select>
                         </TextField> <br />
                     </Box>
                     
@@ -60,13 +58,13 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (props: New
                 </form>
             </Grid>
 
-            <Grid item xs = {2} sx={{ml:'10%', mt:'7.48%', }}>
+            <Grid minWidth={300} item xs = {4} sx={{ml:'10%', mt:'7.48%',}}>
                 <Box  maxWidth="sm" sx={{display: 'flex', width: '100%', height: '50%', alignItems: 'center',justifyContent: 'center', margin: 'auto',  p: 2, border: '2px dashed grey' , borderRadius: 3, fontSize: '15px', flexDirection: 'column'}}>
                     <label>Select an item photo and drop here</label>
                     <label className="gray-label">JPG, PNG or PDF, file size no more than 10MB</label>
                     <Button variant='outlined'>Select File</Button>
                 </Box>
-                <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <Box maxWidth="sm"  sx={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center', margin:'auto' ,}}>
                     <button className="add-item-button" >Add Item </button> 
                 </Box>
                 
