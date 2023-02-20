@@ -7,4 +7,4 @@ export enum Action {
     FETCH_ORDERS,
     CREATE_ORDER,
     COMPLETE_ORDER,
-};
+}

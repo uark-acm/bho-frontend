@@ -1,4 +1,4 @@
-import { BHOItem } from "@uark-acm/bho-data-models/lib";
+import { BHOItem } from '@uark-acm/bho-data-models/lib'
 /*
 id
 name
@@ -12,38 +12,38 @@ set_id
 export const BHOItems: BHOItem[] = [
     {
         id: 1,
-        name: "Soft Black Blazer 1",
+        name: 'Soft Black Blazer 1',
         in_stock: true,
-        description: "stuff",
+        description: 'stuff',
         category_id: 3,
-        size: "S",
-        image: "https://i.insider.com/602ee9ced3ad27001837f2ac?width=700",
+        size: 'S',
+        image: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=700',
     },
     {
         id: 2,
-        name: "Soft Black Blazer 2",
+        name: 'Soft Black Blazer 2',
         in_stock: true,
-        description: "stuff",
+        description: 'stuff',
         category_id: 3,
-        size: "M",
-        image: "https://i.insider.com/602ee9ced3ad27001837f2ac?width=700",
+        size: 'M',
+        image: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=700',
     },
     {
         id: 3,
-        name: "Soft Black Blazer 3",
+        name: 'Soft Black Blazer 3',
         in_stock: true,
-        description: "stuff",
+        description: 'stuff',
         category_id: 3,
-        size: "L",
-        image: "https://i.insider.com/602ee9ced3ad27001837f2ac?width=700",
+        size: 'L',
+        image: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=700',
     },
     {
         id: 4,
-        name: "Soft Black Blazer 4",
+        name: 'Soft Black Blazer 4',
         in_stock: false,
-        description: "stuff",
+        description: 'stuff',
         category_id: 3,
-        size: "S",
-        image: "https://i.insider.com/602ee9ced3ad27001837f2ac?width=700",
+        size: 'S',
+        image: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=700',
     },
 ]
