@@ -2,9 +2,10 @@ import { BHOItem } from '@uark-acm/bho-data-models/lib'
 import { FunctionComponent } from 'react'
 import { Container, IconButton, Card, CardMedia } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
+import ClearIcon from '@mui/icons-material/Clear'
 import './ItemCard.css'
 
-type ItemCardProps = { item: BHOItem }
+type ItemCardProps = { item: BHOItem; added: boolean }
 
 export const ItemCard: FunctionComponent<ItemCardProps> = (
     props: ItemCardProps
@@ -28,14 +29,25 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                         className="addButton"
                         onClick={() => alert('pls add prettier jack')}
                     >
-                        <AddIcon
-                            style={{
-                                stroke: 'white',
-                                scale: '75%',
-                                strokeWidth: '1px',
-                                color: 'white',
-                            }}
-                        />
+                        {props.added ? (
+                            <ClearIcon
+                                style={{
+                                    stroke: 'white',
+                                    scale: '75%',
+                                    strokeWidth: '1px',
+                                    color: 'white',
+                                }}
+                            />
+                        ) : (
+                            <AddIcon
+                                style={{
+                                    stroke: 'white',
+                                    scale: '75%',
+                                    strokeWidth: '1px',
+                                    color: 'white',
+                                }}
+                            />
+                        )}
                     </IconButton>
                 </CardMedia>
                 <div className="textDiv">
