@@ -1,14 +1,27 @@
 import { BHOItem } from '@uark-acm/bho-data-models/lib'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { Container, IconButton, Card, CardMedia } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
+import ClearIcon from '@mui/icons-material/Clear'
 import './ItemCard.css'
+import { ViewItemModal } from './ViewItemModal'
 
-type ItemCardProps = { item: BHOItem }
+type ItemCardProps = { item: BHOItem; added: boolean }
 
 export const ItemCard: FunctionComponent<ItemCardProps> = (
     props: ItemCardProps
 ) => {
+    const [openModal, setOpenModal] = useState(false)
+
+    const handleCardClick = () => {
+        setOpenModal(true)
+    }
+
+    const handleCornerButtonClick = (event: React.MouseEvent) => {
+        event.stopPropagation()
+        props.added ? alert('x clicked') : alert('+ clicked')
+    }
+
     return (
         <Container className="container">
             <Card
@@ -18,6 +31,7 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                         ? '#FFFFFF'
                         : '#B3B3B3',
                 }}
+                onClick={handleCardClick}
             >
                 <CardMedia
                     className="image"
@@ -26,16 +40,27 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                 >
                     <IconButton
                         className="addButton"
-                        onClick={() => alert('pls add prettier jack')}
+                        onClick={handleCornerButtonClick}
                     >
-                        <AddIcon
-                            style={{
-                                stroke: 'white',
-                                scale: '75%',
-                                strokeWidth: '1px',
-                                color: 'white',
-                            }}
-                        />
+                        {props.added ? (
+                            <ClearIcon
+                                style={{
+                                    stroke: 'white',
+                                    scale: '75%',
+                                    strokeWidth: '1px',
+                                    color: 'white',
+                                }}
+                            />
+                        ) : (
+                            <AddIcon
+                                style={{
+                                    stroke: 'white',
+                                    scale: '75%',
+                                    strokeWidth: '1px',
+                                    color: 'white',
+                                }}
+                            />
+                        )}
                     </IconButton>
                 </CardMedia>
                 <div className="textDiv">
@@ -43,6 +68,12 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                     <div className="sizeText">{props.item.size}</div>
                 </div>
             </Card>
+            <ViewItemModal
+                item={props.item}
+                added={props.added}
+                open={openModal}
+                setOpen={setOpenModal}
+            />
         </Container>
     )
 }

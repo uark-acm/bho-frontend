@@ -13,7 +13,7 @@ const ViewInventoryScreen: FunctionComponent<ViewInventoryScreenProps> = () => {
             <Grid container spacing={2}>
                 {BHOItems.map((item, index) => (
                     <Grid item xs={12} sm={4} key={index} alignItems="center">
-                        <ItemCard item={item} />
+                        <ItemCard item={item} added={false} />
                     </Grid>
                 ))}
             </Grid>
