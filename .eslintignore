@@ -1,2 +1,6 @@
 *.css
 *.svg
+vite-env.d.ts
+vite.config.ts
+tailwind.config.cjs
+postcss.config.cjs
