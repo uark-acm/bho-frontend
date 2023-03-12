@@ -8,9 +8,13 @@ const HomeScreen: FunctionComponent<HomeScreenProps> = (
 ) => {
     return (
         <>
-            <Link to="/newItem">New Item</Link>
+            <Link to="/newItem" className="underline text-blue-600">
+                New Item
+            </Link>
             <br></br>
-            <Link to="/viewInventory">View Items</Link>
+            <Link to="/viewInventory" className="underline text-blue-600 ">
+                View Items
+            </Link>
         </>
     )
 }
