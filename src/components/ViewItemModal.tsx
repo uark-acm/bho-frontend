@@ -55,15 +55,21 @@ export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
                     <Box className="vim-card-btns">
                         <Button
                             variant="outlined"
-                            color="error"
-                            style={{ borderRadius: '40px' }}
+                            style={{
+                                borderRadius: '40px',
+                                color: '#A51E36',
+                                borderColor: '#A51E36',
+                                borderWidth: '4px',
+                            }}
                         >
                             {props.item.size}
                         </Button>
                         <Button
                             variant="contained"
-                            color="error"
-                            style={{ borderRadius: '40px' }}
+                            style={{
+                                borderRadius: '40px',
+                                backgroundColor: '#A51E36',
+                            }}
                         >
                             Add to Cart
                         </Button>
