@@ -1,32 +1,32 @@
-import { BHOItem } from '@uark-acm/bho-data-models/lib'
-import { FunctionComponent, useState } from 'react'
-import { Container, IconButton, Card, CardMedia } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add'
-import ClearIcon from '@mui/icons-material/Clear'
-import './ItemCard.css'
-import { ViewItemModal } from './ViewItemModal'
-import { useAppDispatch } from '../redux/redux-config/hooks'
-import { addToCart, removeFromCart } from '../redux/actions/Cart.actions'
+import { BHOItem } from '@uark-acm/bho-data-models/lib';
+import { FunctionComponent, useState } from 'react';
+import { Container, IconButton, Card, CardMedia } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import ClearIcon from '@mui/icons-material/Clear';
+import './ItemCard.css';
+import { ViewItemModal } from './ViewItemModal';
+import { useAppDispatch } from '../redux/redux-config/hooks';
+import { addToCart, removeFromCart } from '../redux/actions/Cart.actions';
 
-type ItemCardProps = { item: BHOItem; added: boolean }
+type ItemCardProps = { item: BHOItem; added: boolean };
 
 export const ItemCard: FunctionComponent<ItemCardProps> = (
     props: ItemCardProps
 ) => {
-    const [openModal, setOpenModal] = useState(false)
-    const [isAdded, setIsAdded] = useState(props.added)
+    const [openModal, setOpenModal] = useState(false);
+    const [isAdded, setIsAdded] = useState(props.added);
 
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
 
     const handleCardClick = () => {
-        setOpenModal(true)
-    }
+        setOpenModal(true);
+    };
 
     const handleCornerButtonClick = (event: React.MouseEvent) => {
-        event.stopPropagation()
-        dispatch(isAdded ? removeFromCart(props.item) : addToCart(props.item))
-        setIsAdded(!isAdded)
-    }
+        event.stopPropagation();
+        dispatch(isAdded ? removeFromCart(props.item) : addToCart(props.item));
+        setIsAdded(!isAdded);
+    };
 
     return (
         <Container className="container">
@@ -83,5 +83,5 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                 setOpen={setOpenModal}
             />
         </Container>
-    )
-}
+    );
+};

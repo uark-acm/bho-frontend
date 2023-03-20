@@ -1,4 +1,4 @@
-import { BHOItem } from '@uark-acm/bho-data-models/lib'
+import { BHOItem } from '@uark-acm/bho-data-models/lib';
 /*
 id
 name
@@ -46,4 +46,4 @@ export const BHOItems: BHOItem[] = [
         size: 'S',
         image: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=700',
     },
-]
+];

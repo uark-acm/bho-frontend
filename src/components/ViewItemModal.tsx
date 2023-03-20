@@ -6,39 +6,39 @@ import {
     IconButton,
     Button,
     Card,
-} from '@mui/material'
-import { BHOItem } from '@uark-acm/bho-data-models/lib'
-import { FunctionComponent, useState } from 'react'
-import ClearIcon from '@mui/icons-material/Clear'
-import './ViewItemModal.css'
-import { useAppDispatch } from '../redux/redux-config/hooks'
-import { removeFromCart, addToCart } from '../redux/actions/Cart.actions'
+} from '@mui/material';
+import { BHOItem } from '@uark-acm/bho-data-models/lib';
+import { FunctionComponent, useState } from 'react';
+import ClearIcon from '@mui/icons-material/Clear';
+import './ViewItemModal.css';
+import { useAppDispatch } from '../redux/redux-config/hooks';
+import { removeFromCart, addToCart } from '../redux/actions/Cart.actions';
 
 type ViewItemModalProps = {
-    item: BHOItem
-    added: boolean
-    open: boolean
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
+    item: BHOItem;
+    added: boolean;
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
     props: ViewItemModalProps
 ) => {
-    const [isAdded, setIsAdded] = useState(props.added)
-    const dispatch = useAppDispatch()
+    const [isAdded, setIsAdded] = useState(props.added);
+    const dispatch = useAppDispatch();
 
     const handleAddClick = (event: React.MouseEvent) => {
-        event.stopPropagation()
-        dispatch(isAdded ? removeFromCart(props.item) : addToCart(props.item))
-        setIsAdded(!isAdded)
-    }
+        event.stopPropagation();
+        dispatch(isAdded ? removeFromCart(props.item) : addToCart(props.item));
+        setIsAdded(!isAdded);
+    };
 
     return (
         <Modal
             className="vim-modal"
             open={props.open}
             onClose={() => {
-                props.setOpen(false)
+                props.setOpen(false);
             }}
             disableAutoFocus={true}
         >
@@ -94,5 +94,5 @@ export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
                 </IconButton>
             </Card>
         </Modal>
-    )
-}
+    );
+};
