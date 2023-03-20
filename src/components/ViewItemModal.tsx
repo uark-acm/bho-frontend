@@ -8,9 +8,11 @@ import {
     Card,
 } from '@mui/material'
 import { BHOItem } from '@uark-acm/bho-data-models/lib'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useState } from 'react'
 import ClearIcon from '@mui/icons-material/Clear'
 import './ViewItemModal.css'
+import { useAppDispatch } from '../redux/redux-config/hooks'
+import { removeFromCart, addToCart } from '../redux/actions/Cart.actions'
 
 type ViewItemModalProps = {
     item: BHOItem
@@ -22,6 +24,15 @@ type ViewItemModalProps = {
 export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
     props: ViewItemModalProps
 ) => {
+    const [isAdded, setIsAdded] = useState(props.added)
+    const dispatch = useAppDispatch()
+
+    const handleAddClick = (event: React.MouseEvent) => {
+        event.stopPropagation()
+        dispatch(isAdded ? removeFromCart(props.item) : addToCart(props.item))
+        setIsAdded(!isAdded)
+    }
+
     return (
         <Modal
             className="vim-modal"
@@ -65,9 +76,12 @@ export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
                             color="error"
                             style={{ borderRadius: '40px' }}
                             disabled={!props.item.in_stock}
+                            onClick={handleAddClick}
                         >
                             {props.item.in_stock
-                                ? 'Add to Cart'
+                                ? isAdded
+                                    ? 'Remove from Cart'
+                                    : 'Add to Cart'
                                 : 'Out of Stock'}
                         </Button>
                     </Box>
