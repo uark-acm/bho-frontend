@@ -40,6 +40,7 @@ export const InputBar: FunctionComponent<InputBarProps> = (
                             labelId="clothing-type-label"
                             id="clothing-type"
                             value={clothingType}
+                            label="Clothing Type"
                             onChange={(e) => setClothingType(e.target.value)}
                         >
                             <MenuItem>
@@ -55,6 +56,7 @@ export const InputBar: FunctionComponent<InputBarProps> = (
                             labelId="size-label"
                             id="size"
                             value={size}
+                            label="Clothing Type"
                             onChange={(e) => {
                                 setSize(e.target.value)
                             }}
