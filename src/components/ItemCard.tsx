@@ -5,6 +5,8 @@ import AddIcon from '@mui/icons-material/Add'
 import ClearIcon from '@mui/icons-material/Clear'
 import './ItemCard.css'
 import { ViewItemModal } from './ViewItemModal'
+import { useAppDispatch } from '../redux/redux-config/hooks'
+import { addToCart, removeFromCart } from '../redux/actions/Cart.actions'
 
 type ItemCardProps = { item: BHOItem; added: boolean }
 
@@ -12,6 +14,9 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
     props: ItemCardProps
 ) => {
     const [openModal, setOpenModal] = useState(false)
+    const [isAdded, setIsAdded] = useState(props.added)
+
+    const dispatch = useAppDispatch()
 
     const handleCardClick = () => {
         setOpenModal(true)
@@ -19,7 +24,8 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
 
     const handleCornerButtonClick = (event: React.MouseEvent) => {
         event.stopPropagation()
-        props.added ? alert('x clicked') : alert('+ clicked')
+        dispatch(isAdded ? removeFromCart(props.item) : addToCart(props.item))
+        setIsAdded(!isAdded)
     }
 
     return (
@@ -38,30 +44,32 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                     image={props.item.image}
                     title="Image"
                 >
-                    <IconButton
-                        className="addButton"
-                        onClick={handleCornerButtonClick}
-                    >
-                        {props.added ? (
-                            <ClearIcon
-                                style={{
-                                    stroke: 'white',
-                                    scale: '75%',
-                                    strokeWidth: '1px',
-                                    color: 'white',
-                                }}
-                            />
-                        ) : (
-                            <AddIcon
-                                style={{
-                                    stroke: 'white',
-                                    scale: '75%',
-                                    strokeWidth: '1px',
-                                    color: 'white',
-                                }}
-                            />
-                        )}
-                    </IconButton>
+                    {props.item.in_stock && (
+                        <IconButton
+                            className="addButton"
+                            onClick={handleCornerButtonClick}
+                        >
+                            {isAdded ? (
+                                <ClearIcon
+                                    style={{
+                                        stroke: 'white',
+                                        scale: '75%',
+                                        strokeWidth: '1px',
+                                        color: 'white',
+                                    }}
+                                />
+                            ) : (
+                                <AddIcon
+                                    style={{
+                                        stroke: 'white',
+                                        scale: '75%',
+                                        strokeWidth: '1px',
+                                        color: 'white',
+                                    }}
+                                />
+                            )}
+                        </IconButton>
+                    )}
                 </CardMedia>
                 <div className="textDiv">
                     <div className="nameText">{props.item.name}</div>

@@ -64,8 +64,11 @@ export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
                             variant="contained"
                             color="error"
                             style={{ borderRadius: '40px' }}
+                            disabled={!props.item.in_stock}
                         >
-                            Add to Cart
+                            {props.item.in_stock
+                                ? 'Add to Cart'
+                                : 'Out of Stock'}
                         </Button>
                     </Box>
                 </Box>
