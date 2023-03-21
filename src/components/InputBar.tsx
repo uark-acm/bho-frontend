@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useState } from 'react';
 import {
     Grid,
     TextField,
@@ -7,18 +7,18 @@ import {
     Select,
     MenuItem,
     IconButton,
-} from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
-import './InputBar.css'
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import './InputBar.css';
 
-type InputBarProps = {}
+type InputBarProps = {};
 
 export const InputBar: FunctionComponent<InputBarProps> = (
     props: InputBarProps
 ) => {
-    const [clothingType, setClothingType] = useState('')
-    const [size, setSize] = useState('')
-    const [searchInput, setSearchInput] = useState('')
+    const [clothingType, setClothingType] = useState('');
+    const [size, setSize] = useState('');
+    const [searchInput, setSearchInput] = useState('');
 
     return (
         <div className="inputBarContainer">
@@ -56,7 +56,7 @@ export const InputBar: FunctionComponent<InputBarProps> = (
                             id="size"
                             value={size}
                             onChange={(e) => {
-                                setSize(e.target.value)
+                                setSize(e.target.value);
                             }}
                         >
                             <MenuItem>
@@ -76,5 +76,5 @@ export const InputBar: FunctionComponent<InputBarProps> = (
                 </Grid>
             </Grid>
         </div>
-    )
-}
+    );
+};

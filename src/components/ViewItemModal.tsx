@@ -6,28 +6,39 @@ import {
     IconButton,
     Button,
     Card,
-} from '@mui/material'
-import { BHOItem } from '@uark-acm/bho-data-models/lib'
-import { FunctionComponent } from 'react'
-import ClearIcon from '@mui/icons-material/Clear'
-import './ViewItemModal.css'
+} from '@mui/material';
+import { BHOItem } from '@uark-acm/bho-data-models/lib';
+import { FunctionComponent, useState } from 'react';
+import ClearIcon from '@mui/icons-material/Clear';
+import './ViewItemModal.css';
+import { useAppDispatch } from '../redux/redux-config/hooks';
+import { removeFromCart, addToCart } from '../redux/actions/Cart.actions';
 
 type ViewItemModalProps = {
-    item: BHOItem
-    added: boolean
-    open: boolean
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
+    item: BHOItem;
+    added: boolean;
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
     props: ViewItemModalProps
 ) => {
+    const [isAdded, setIsAdded] = useState(props.added);
+    const dispatch = useAppDispatch();
+
+    const handleAddClick = (event: React.MouseEvent) => {
+        event.stopPropagation();
+        dispatch(isAdded ? removeFromCart(props.item) : addToCart(props.item));
+        setIsAdded(!isAdded);
+    };
+
     return (
         <Modal
             className="vim-modal"
             open={props.open}
             onClose={() => {
-                props.setOpen(false)
+                props.setOpen(false);
             }}
             disableAutoFocus={true}
         >
@@ -70,8 +81,14 @@ export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
                                 borderRadius: '40px',
                                 backgroundColor: '#A51E36',
                             }}
+                            disabled={!props.item.in_stock}
+                            onClick={handleAddClick}
                         >
-                            Add to Cart
+                            {props.item.in_stock
+                                ? isAdded
+                                    ? 'Remove from Cart'
+                                    : 'Add to Cart'
+                                : 'Out of Stock'}
                         </Button>
                     </Box>
                 </Box>
@@ -83,5 +100,5 @@ export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
                 </IconButton>
             </Card>
         </Modal>
-    )
-}
+    );
+};
