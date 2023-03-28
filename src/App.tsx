@@ -8,6 +8,7 @@ import ViewInventoryScreen from './components/screens/ViewInventoryScreen';
 import HomeScreen from './components/screens/HomeScreen';
 import NewItemFormScreen from './components/screens/NewItemFormScreen';
 import Header from './components/Header';
+import CheckoutFormScreen from './components/screens/CheckoutFormScreen';
 
 function App() {
     const store = createStore(
@@ -26,6 +27,7 @@ function App() {
                     />
                     <Route index path="/*" element={<HomeScreen />} />
                     <Route path="/newItem" element={<NewItemFormScreen />} />
+                    <Route path="/checkout" element={<CheckoutFormScreen />}></Route>
                 </Routes>
             </BrowserRouter>
         </Provider>

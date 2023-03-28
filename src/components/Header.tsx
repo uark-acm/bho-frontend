@@ -15,6 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from './BHO-Logo.png';
 import Badge from '@mui/material/Badge';
+import { Navigate, useNavigate } from "react-router-dom";
 import { height, sizeHeight, sizeWidth, width } from '@mui/system';
 
 const pages = ['About', 'Clothing', 'Accessories', 'Admin'];
@@ -36,6 +37,7 @@ const Custom = styled.button`
 `;
 
 function ResponsiveAppBar() {
+    const navigate = useNavigate();
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
@@ -56,6 +58,11 @@ function ResponsiveAppBar() {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const handleReviewOrderButton = ()  => {
+        let path = `/checkout`;
+        navigate(path);
     };
 
     return (
@@ -196,8 +203,8 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
                     {/* got the review box closer */}
-                    <Box>
-                        <IconButton>
+                    <Box onClick={handleReviewOrderButton}>
+                        <IconButton >
                             <Badge
                                 badgeContent={7}
                                 color="warning"
@@ -211,7 +218,7 @@ function ResponsiveAppBar() {
                                     },
                                 }}
                             >
-                                <Custom>Review Order</Custom>
+                                <Custom >Review Order</Custom>
                             </Badge>
                         </IconButton>
                         <Menu
