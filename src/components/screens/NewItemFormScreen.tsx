@@ -2,6 +2,7 @@ import React, { useState, FunctionComponent } from 'react';
 import { Grid, Select, TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import './NewItemFormScreen.css';
+import FormInputField from './FormInputField';
 
 type NewItemFormScreenProps = {};
 
