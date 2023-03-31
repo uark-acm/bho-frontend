@@ -27,7 +27,10 @@ function App() {
                     />
                     <Route index path="/*" element={<HomeScreen />} />
                     <Route path="/newItem" element={<NewItemFormScreen />} />
-                    <Route path="/checkout" element={<CheckoutFormScreen />}></Route>
+                    <Route
+                        path="/checkout"
+                        element={<CheckoutFormScreen />}
+                    ></Route>
                 </Routes>
             </BrowserRouter>
         </Provider>

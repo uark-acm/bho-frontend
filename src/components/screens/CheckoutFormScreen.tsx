@@ -1,111 +1,207 @@
 import React, { useState, FunctionComponent } from 'react';
 import FormInputField from './FormInputField';
-import { DateTime } from 'luxon';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateField } from '@mui/x-date-pickers/DateField';
-import { TimeField } from '@mui/x-date-pickers/TimeField';
-import { Grid, Button, MenuItem } from '@mui/material';
-import {ItemCard} from '../ItemCard';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { Grid, Button, MenuItem, SelectChangeEvent } from '@mui/material';
+import { ItemCard } from '../ItemCard';
+import dayjs, { Dayjs } from 'dayjs';
 import { BHOItems } from '../../mocks/BHOItems.model';
-import {ClientClassification, ClientCollege} from '@uark-acm/bho-data-models/lib';;
+import { UserClassification, UserCollege } from '@uark-acm/bho-data-models/lib';
 
-
-type CheckoutFormScreenProps  = {};
+type CheckoutFormScreenProps = {};
 type CheckoutFormState = {
-    firstName: String,
-    lastName: String,
-    email: String,
-    classification: ClientClassification,
-    college: ClientCollege,
-    reason: String,
-    eventDate: DateTime,
-    pickupDate: DateTime,
-    pickupTime: DateTime,
+    firstName: string;
+    lastName: string;
+    email: string;
+    classification: string;
+    college: string;
+    reason: string;
 };
 
 const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
     props: CheckoutFormScreenProps
 ) => {
-    const [itemValues, setItemValues] = useState<CheckoutFormState>({
+    const [formValues, setFormValues] = useState<CheckoutFormState>({
         firstName: '',
         lastName: '',
         email: '',
-        classification: null,
-        college: null,
+        classification: '',
+        college: '',
         reason: '',
-        eventDate:'',
-        pickupDate: '',
-        pickupTime: '',
     });
 
+    const [eventDate, setEventDate] = React.useState<Dayjs | null>(
+        dayjs('0000-00-00')
+    );
+    const [pickupTime, setPickupDateTime] = React.useState<Dayjs | null>(
+        dayjs('0000-00-00')
+    );
+
     const changeHandler = (e: React.ChangeEvent<any>) => {
-        console.log(e.target.id, e.target.value);
-        setItemValues({ ...itemValues, [e.target.id]: e.target.value });
+        setFormValues({ ...formValues, [e.target.id]: e.target.value });
     };
 
+    const classificationChangeHandler = (e: SelectChangeEvent) => {
+        setFormValues({ ...formValues, classification: e.target.value });
+    };
+
+    const collegeChangeHandler = (e: SelectChangeEvent) => {
+        setFormValues({ ...formValues, college: e.target.value });
+    };
+    // do on submit
+    const checkValidDate = () => {};
+
+    const formValidation = (e: React.MouseEvent) => {};
+
+    const checkValidTime = () => {};
+
+    const createOrderRequestObject = () => {};
+
+    const spacingBetweenFields = 'mt-5 inline-block';
+    console.log('event date: ', eventDate);
+    console.log('pickup time: ', pickupTime);
+
     return (
-        <div> 
-            <div className="ml-0.5 my-5">
-                <label className="text-slate-500 pt-10 pl-10">Checkout</label>
+        <div>
+            <div className="ml-10 mt-20">
+                <label className="text-slate-500">Checkout</label>
             </div>
             <form id="checkoutForm" name="checkoutForm">
-                <Grid container spacing={10} >
+                <Grid container spacing={10}>
                     <Grid item className="w-1/3">
                         <div className="ml-10">
-                            <label>First Name</label> <br />
-                            <FormInputField name="firstName" id="firstName" onChange={changeHandler} type="text"></FormInputField> <br />
-                            <label>Last Name</label> <br />
-                            <FormInputField name="lastName" id="lastName" onChange={changeHandler} type="text"></FormInputField> <br />
-                            <label>Email</label> <br />
-                            <FormInputField name="email" id="email" onChange={changeHandler}></FormInputField> <br/>
-                            <label>Classification</label>
-                            <FormInputField name="classification" id="classification" value={itemValues.classification} select>
-                                {Object.values(ClientClassification).map((item, index) => (
-                                    <MenuItem key={item} value={item} onClick={changeHandler}>{item}</MenuItem>
-                                    ))
-                                }
+                            <label className={spacingBetweenFields}>
+                                First Name
+                            </label>
+                            <br />
+                            <FormInputField
+                                className=""
+                                name="firstName"
+                                id="firstName"
+                                onChange={changeHandler}
+                                type="text"
+                                required
+                            ></FormInputField>
+                            <br />
+                            <label className={spacingBetweenFields}>
+                                Last Name
+                            </label>
+                            <br />
+                            <FormInputField
+                                name="lastName"
+                                id="lastName"
+                                onChange={changeHandler}
+                                type="text"
+                                required
+                            ></FormInputField>
+                            <br />
+                            <label className={spacingBetweenFields}>
+                                Email
+                            </label>
+                            <br />
+                            <FormInputField
+                                name="email"
+                                id="email"
+                                onChange={changeHandler}
+                                required
+                            ></FormInputField>
+                            <br />
+                            <label className={spacingBetweenFields}>
+                                Classification
+                            </label>
+                            <FormInputField
+                                name="classification"
+                                id="classification"
+                                value={formValues.classification}
+                                onChange={classificationChangeHandler}
+                                required
+                                select
+                            >
+                                {Object.values(UserClassification).map(
+                                    (item, index) => (
+                                        <MenuItem key={index} value={item}>
+                                            {item}
+                                        </MenuItem>
+                                    )
+                                )}
                             </FormInputField>
-                            <label>College</label> <br />
-                            <FormInputField name="college" id="college" onChange={changeHandler} select>
-                                {Object.values(ClientCollege).map((item, index) => (
-                                    <MenuItem>{item}</MenuItem>
-                                    ))
-                                }
+                            <label className={spacingBetweenFields}>
+                                College
+                            </label>
+                            <br />
+                            <FormInputField
+                                name="college"
+                                id="college"
+                                onChange={collegeChangeHandler}
+                                required
+                                select
+                            >
+                                {Object.values(UserCollege).map(
+                                    (item, index) => (
+                                        <MenuItem key={index} value={item}>
+                                            {item}
+                                        </MenuItem>
+                                    )
+                                )}
                             </FormInputField>
-                            <label>Reason</label> <br />
-                            <FormInputField multiline name="reason" id="reason" onChange={changeHandler}></FormInputField>
+                            <label className={spacingBetweenFields}>
+                                Reason
+                            </label>
+                            <br />
+                            <FormInputField
+                                multiline
+                                name="reason"
+                                id="reason"
+                                onChange={changeHandler}
+                            ></FormInputField>
+                        </div>
+                    </Grid>
+                    <Grid item className="w-1/3">
+                        <div className="mt-5">
+                            <label>
+                                When's the event you are getting clothes for?
+                            </label>
+                            <br />
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker
+                                    sx={{ width: '100%' }}
+                                    onChange={setEventDate}
+                                />{' '}
+                                <br />
+                                <label className={spacingBetweenFields}>
+                                    Pickup Date & Time
+                                </label>
+                                <br />
+                                <DateTimePicker
+                                    sx={{ width: '100%' }}
+                                    onChange={setPickupDateTime}
+                                />
+                            </LocalizationProvider>
+                            <br />
+                        </div>
+                        <div className="flex justify-center items-center mt-5">
+                            <div>
+                                <button className=" bg-red-700 text-white border-4 border-red-700 rounded-full py-2 px-5 m-5 outline-red-700 outline-2 !important">
+                                    Submit Order
+                                </button>
+                                <button className="border-4 border-red-700 rounded-full py-2 px-5 m-5 outline-red-700 outline-2 !important">
+                                    Cancel
+                                </button>
+                                {/* TODO: make it the actual red of uark*/}
+                                <br />
+                            </div>
                         </div>
                     </Grid>
                     <Grid item className="w-1/3">
                         <div>
-                            <label>When's the event you are getting clothes for? </label> <br />
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DateField name="eventDate" id="eventDate" onChange={changeHandler} variant = "filled" size="small" hiddenLabel/>
-                            </LocalizationProvider><br />
-                            <label>Pickup Date</label> <br />
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DateField hiddenLabel name="pickupDate" id="pickupDate" onChange={changeHandler}  variant = "filled" size="small"/> 
-                                <br />
-                                <label>Pickup Time</label> <br />
-                                <TimeField
-                                    name="pickupTime" id="pickupTime" onChange={changeHandler}
-                                    hiddenLabel
-                                    variant = "filled" size="small"
-                                />
-                            </LocalizationProvider> <br />
+                            {BHOItems.map((item, index) => (
+                                <Grid item key={index} alignItems="center">
+                                    <ItemCard item={item} added={true} />
+                                </Grid>
+                            ))}
                         </div>
-                        <div>
-                            <Button>Cancel</Button>
-                            <Button>Submit Order</Button>
-                        </div>
-                    </Grid>
-                    <Grid item className="w-1/3">  
-                        {BHOItems.map((item, index) => (
-                        <Grid item key={index} alignItems="center">
-                            <ItemCard item={item} added={true} />
-                        </Grid>
-                        ))}
                     </Grid>
                 </Grid>
             </form>
