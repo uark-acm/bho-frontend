@@ -1,25 +1,29 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "index.css": {
+    "file": "assets/index-21b244c7.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "assets": [
+      "assets/BHO-Logo-32e9f552.png"
+    ],
+    "css": [
+      "assets/index-21b244c7.css"
+    ],
+    "dynamicImports": [
+      "node_modules/web-vitals/dist/web-vitals.js"
+    ],
+    "file": "assets/index-285e235c.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "node_modules/web-vitals/dist/web-vitals.js": {
+    "file": "assets/web-vitals-60d3425a.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/web-vitals/dist/web-vitals.js"
+  },
+  "src/components/BHO-Logo.png": {
+    "file": "assets/BHO-Logo-32e9f552.png",
+    "src": "src/components/BHO-Logo.png"
+  }
 }

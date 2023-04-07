@@ -1,9 +1,9 @@
-import React, { useState, FunctionComponent } from 'react'
-import { Grid, Select, TextField, Button } from '@mui/material'
-import { Box } from '@mui/system'
-import './NewItemFormScreen.css'
+import React, { useState, FunctionComponent } from 'react';
+import { Grid, Select, TextField, Button } from '@mui/material';
+import { Box } from '@mui/system';
+import './NewItemFormScreen.css';
 
-type NewItemFormScreenProps = {}
+type NewItemFormScreenProps = {};
 
 const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
     props: NewItemFormScreenProps
@@ -14,13 +14,13 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
         itemSize: '',
         itemDescription: '',
         itemPhoto: '',
-    })
+    });
 
-    const textFieldBoxesSx = { mb: '10%', ml: '5%' }
+    const textFieldBoxesSx = { mb: '10%', ml: '5%' };
 
     const changeHandler = (e: React.ChangeEvent<any>) => {
-        setItemValues({ ...itemValues, [e.target.id]: e.target.value })
-    }
+        setItemValues({ ...itemValues, [e.target.id]: e.target.value });
+    };
 
     return (
         <Grid container spacing={10}>
@@ -129,7 +129,7 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                 </Box>
             </Grid>
         </Grid>
-    )
-}
+    );
+};
 
-export default NewItemFormScreen
+export default NewItemFormScreen;

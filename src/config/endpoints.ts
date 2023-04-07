@@ -1,1 +1,1 @@
-export const rootURL = 'https://bho-backend.herokuapp.com'
+export const rootURL = 'https://bho-backend.herokuapp.com';

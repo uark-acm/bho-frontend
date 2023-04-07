@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react'
-import { Grid } from '@mui/material'
-import { BHOItems } from '../../mocks/BHOItems.model'
-import { ItemCard } from '../ItemCard'
-import { InputBar } from '../InputBar'
+import { FunctionComponent } from 'react';
+import { Grid } from '@mui/material';
+import { BHOItems } from '../../mocks/BHOItems.model';
+import { ItemCard } from '../ItemCard';
+import { InputBar } from '../InputBar';
 
 interface ViewInventoryScreenProps {}
 
@@ -18,6 +18,6 @@ const ViewInventoryScreen: FunctionComponent<ViewInventoryScreenProps> = () => {
                 ))}
             </Grid>
         </div>
-    )
-}
-export default ViewInventoryScreen
+    );
+};
+export default ViewInventoryScreen;

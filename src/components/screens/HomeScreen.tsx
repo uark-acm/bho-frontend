@@ -1,7 +1,7 @@
-import { FunctionComponent } from 'react'
-import { Link } from 'react-router-dom'
+import { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 
-type HomeScreenProps = {}
+type HomeScreenProps = {};
 
 const HomeScreen: FunctionComponent<HomeScreenProps> = (
     props: HomeScreenProps
@@ -16,7 +16,7 @@ const HomeScreen: FunctionComponent<HomeScreenProps> = (
                 View Items
             </Link>
         </>
-    )
-}
+    );
+};
 
-export default HomeScreen
+export default HomeScreen;

@@ -7,4 +7,7 @@ export enum Action {
     FETCH_ORDERS,
     CREATE_ORDER,
     COMPLETE_ORDER,
+
+    ADD_TO_CART,
+    REMOVE_FROM_CART,
 }
