@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ViewInventoryScreen from './components/screens/ViewInventoryScreen';
 import HomeScreen from './components/screens/HomeScreen';
 import NewItemFormScreen from './components/screens/NewItemFormScreen';
+import ReviewOrdersScreen from './components/screens/reviewOrdersScreen';
 import Header from './components/Header';
 import TestingReduxComponent from './components/TestingReduxComponent';
 
@@ -28,6 +29,7 @@ function App() {
                     />
                     <Route index path="/*" element={<HomeScreen />} />
                     <Route path="/newItem" element={<NewItemFormScreen />} />
+                    <Route path="/orders" element={<ReviewOrdersScreen />} />
                 </Routes>
             </BrowserRouter>
         </Provider>
