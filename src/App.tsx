@@ -8,6 +8,7 @@ import ViewInventoryScreen from './components/screens/ViewInventoryScreen';
 import HomeScreen from './components/screens/HomeScreen';
 import NewItemFormScreen from './components/screens/NewItemFormScreen';
 import Header from './components/Header';
+import TestingReduxComponent from './components/TestingReduxComponent';
 
 function App() {
     const store = createStore(
@@ -18,6 +19,7 @@ function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
+                <TestingReduxComponent />
                 <Header />
                 <Routes>
                     <Route
