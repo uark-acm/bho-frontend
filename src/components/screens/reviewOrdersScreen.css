@@ -1,0 +1,14 @@
+.boxLength {
+    width: 83.8%;
+    margin: 0 auto;
+    padding-top: 62px;
+    display: flex;
+  }
+
+.underline {
+  text-decoration: underline rgb(24, 174, 228) 2px;
+}
+
+.color{
+  color: rgb(24, 174, 228);
+}
