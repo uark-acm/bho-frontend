@@ -20,8 +20,8 @@ type CheckoutFormState = {
     firstName: string;
     lastName: string;
     email: string;
-    classification: UserClassification | null;
-    college: UserCollege | null;
+    classification: UserClassification;
+    college: UserCollege;
     reason: string;
 };
 
@@ -32,8 +32,8 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
         firstName: '',
         lastName: '',
         email: '',
-        classification: null,
-        college: null,
+        classification: UserClassification.FRESHMAN,
+        college: UserCollege.ENGINEERING,
         reason: '',
     });
 
@@ -86,7 +86,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
             user_is_international: false,
             user_reason: formValues.reason,
             event_date: eventDate?.toDate(),
-            requested_pickup: pickupTime?.toDate(),
+            requested_pickup: pickupTime!.toDate(),
             requested_items: [],
         };
     };
