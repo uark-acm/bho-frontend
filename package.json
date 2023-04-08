@@ -33,7 +33,7 @@
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^18.0.11",
-    "@uark-acm/bho-data-models": "^1.2.0",
+    "@uark-acm/bho-data-models": "^1.4.0",
     "dayjs": "^1.11.7",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
