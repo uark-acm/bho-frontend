@@ -39,15 +39,21 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
         dayjs('0000-00-00')
     );
 
-    const changeHandler = (e: React.ChangeEvent<any>) => {
+    const changeHandler = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
         setFormValues({ ...formValues, [e.target.id]: e.target.value });
     };
 
-    const classificationChangeHandler = (e: SelectChangeEvent) => {
+    const classificationChangeHandler = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
         setFormValues({ ...formValues, classification: e.target.value });
     };
 
-    const collegeChangeHandler = (e: SelectChangeEvent) => {
+    const collegeChangeHandler = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
         setFormValues({ ...formValues, college: e.target.value });
     };
     // do on submit
