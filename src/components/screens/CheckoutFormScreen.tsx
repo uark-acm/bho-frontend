@@ -4,19 +4,24 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { Grid, Button, MenuItem, SelectChangeEvent } from '@mui/material';
+import { Grid, MenuItem } from '@mui/material';
 import { ItemCard } from '../ItemCard';
 import dayjs, { Dayjs } from 'dayjs';
 import { BHOItems } from '../../mocks/BHOItems.model';
-import { UserClassification, UserCollege } from '@uark-acm/bho-data-models/lib';
+import {
+    UserClassification,
+    UserCollege,
+    CreateOrderRequest,
+} from '@uark-acm/bho-data-models/lib';
 
 type CheckoutFormScreenProps = {};
+
 type CheckoutFormState = {
     firstName: string;
     lastName: string;
     email: string;
-    classification: string;
-    college: string;
+    classification: UserClassification | null;
+    college: UserCollege | null;
     reason: string;
 };
 
@@ -27,8 +32,8 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
         firstName: '',
         lastName: '',
         email: '',
-        classification: '',
-        college: '',
+        classification: null,
+        college: null,
         reason: '',
     });
 
@@ -48,27 +53,44 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
     const classificationChangeHandler = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        setFormValues({ ...formValues, classification: e.target.value });
+        setFormValues({
+            ...formValues,
+            classification: e.target.value as UserClassification,
+        });
     };
 
     const collegeChangeHandler = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        setFormValues({ ...formValues, college: e.target.value });
+        setFormValues({
+            ...formValues,
+            college: e.target.value as UserCollege,
+        });
     };
     // do on submit
     const checkValidDate = () => {};
 
-    const formValidation = (e: React.MouseEvent) => {};
+    const formValidation = (e: React.MouseEvent) => {
+        e.preventDefault();
+        createOrderRequestObject();
+    };
 
     const checkValidTime = () => {};
 
-    const createOrderRequestObject = () => {};
-
+    const createOrderRequestObject = () => {
+        const order: CreateOrderRequest = {
+            user_name: formValues.firstName + formValues.lastName,
+            user_email: formValues.email,
+            user_classification: formValues.classification,
+            user_college: formValues.college,
+            user_is_international: false,
+            user_reason: formValues.reason,
+            event_date: eventDate?.toDate(),
+            requested_pickup: pickupTime?.toDate(),
+            requested_items: [],
+        };
+    };
     const spacingBetweenFields = 'mt-5 inline-block';
-    console.log('event date: ', eventDate);
-    console.log('pickup time: ', pickupTime);
-
     return (
         <div>
             <div className="ml-10 mt-20">
@@ -189,7 +211,10 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                         </div>
                         <div className="flex justify-center items-center mt-5">
                             <div>
-                                <button className=" bg-red-700 text-white border-4 border-red-700 rounded-full py-2 px-5 m-5 outline-red-700 outline-2 !important">
+                                <button
+                                    onClick={formValidation}
+                                    className=" bg-red-700 text-white border-4 border-red-700 rounded-full py-2 px-5 m-5 outline-red-700 outline-2 !important"
+                                >
                                     Submit Order
                                 </button>
                                 <button className="border-4 border-red-700 rounded-full py-2 px-5 m-5 outline-red-700 outline-2 !important">
