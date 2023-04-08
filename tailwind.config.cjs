@@ -5,9 +5,7 @@ module.exports = {
 
   "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
-    extend: {
-      'gray-label': '#808080'
-    },
+    extend: {},
   },
   plugins: [],
 }
