@@ -8,8 +8,8 @@ import { ItemCard } from '../components/ItemCard';
 import dayjs, { Dayjs } from 'dayjs';
 import { BHOItems } from '../mocks/BHOItems.model';
 import {
-    ClientClassification,
-    ClientCollege,
+    UserClassification,
+    UserCollege,
     CreateOrderRequest,
 } from '@uark-acm/bho-data-models/lib';
 import FormInputField from '../components/FormInputField';
@@ -20,8 +20,8 @@ type CheckoutFormState = {
     firstName: string;
     lastName: string;
     email: string;
-    classification: ClientClassification | null;
-    college: ClientCollege | null;
+    classification: UserClassification;
+    college: UserCollege;
     reason: string;
 };
 
@@ -32,8 +32,8 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
         firstName: '',
         lastName: '',
         email: '',
-        classification: null,
-        college: null,
+        classification: UserClassification.FRESHMAN,
+        college: UserCollege.ENGINEERING,
         reason: '',
     });
 
@@ -55,7 +55,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
     ) => {
         setFormValues({
             ...formValues,
-            classification: e.target.value as ClientClassification,
+            classification: e.target.value as UserClassification,
         });
     };
 
@@ -64,7 +64,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
     ) => {
         setFormValues({
             ...formValues,
-            college: e.target.value as ClientCollege,
+            college: e.target.value as UserCollege,
         });
     };
     // do on submit
@@ -77,7 +77,19 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
 
     const checkValidTime = () => {};
 
-    const createOrderRequestObject = () => {};
+    const createOrderRequestObject = () => {
+        const order: CreateOrderRequest = {
+            user_name: formValues.firstName + formValues.lastName,
+            user_email: formValues.email,
+            user_classification: formValues.classification,
+            user_college: formValues.college,
+            user_is_international: false,
+            user_reason: formValues.reason,
+            event_date: eventDate?.toDate(),
+            requested_pickup: pickupTime!.toDate(),
+            requested_items: [],
+        };
+    };
     const spacingBetweenFields = 'mt-5 inline-block';
     return (
         <div>
@@ -135,7 +147,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                                 required
                                 select
                             >
-                                {Object.values(ClientClassification).map(
+                                {Object.values(UserClassification).map(
                                     (item, index) => (
                                         <MenuItem key={index} value={item}>
                                             {item}
@@ -154,7 +166,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                                 required
                                 select
                             >
-                                {Object.values(ClientCollege).map(
+                                {Object.values(UserCollege).map(
                                     (item, index) => (
                                         <MenuItem key={index} value={item}>
                                             {item}
@@ -184,7 +196,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                                 <DatePicker
                                     sx={{ width: '100%' }}
                                     onChange={setEventDate}
-                                />{' '}
+                                />
                                 <br />
                                 <label className={spacingBetweenFields}>
                                     Pickup Date & Time
