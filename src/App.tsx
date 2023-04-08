@@ -4,10 +4,11 @@ import reducers from './redux/reducers';
 import ReduxThunkMiddleWare from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ViewInventoryScreen from './components/screens/ViewInventoryScreen';
-import HomeScreen from './components/screens/HomeScreen';
-import NewItemFormScreen from './components/screens/NewItemFormScreen';
+import ViewInventoryScreen from './screens/ViewInventoryScreen';
+import HomeScreen from './screens/HomeScreen';
+import NewItemFormScreen from './screens/NewItemFormScreen';
 import Header from './components/Header';
+import CheckoutFormScreen from './screens/CheckoutFormScreen';
 import TestingReduxComponent from './components/TestingReduxComponent';
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
                     />
                     <Route index path="/*" element={<HomeScreen />} />
                     <Route path="/newItem" element={<NewItemFormScreen />} />
+                    <Route
+                        path="/checkout"
+                        element={<CheckoutFormScreen />}
+                    ></Route>
                 </Routes>
             </BrowserRouter>
         </Provider>
