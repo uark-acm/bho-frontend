@@ -1,6 +1,6 @@
 {
   "index.css": {
-    "file": "assets/index-5f4cfb3f.css",
+    "file": "assets/index-02178622.css",
     "src": "index.css"
   },
   "index.html": {
@@ -8,12 +8,12 @@
       "assets/BHO-Logo-32e9f552.png"
     ],
     "css": [
-      "assets/index-5f4cfb3f.css"
+      "assets/index-02178622.css"
     ],
     "dynamicImports": [
       "node_modules/web-vitals/dist/web-vitals.js"
     ],
-    "file": "assets/index-0fde7720.js",
+    "file": "assets/index-1a6003fd.js",
     "isEntry": true,
     "src": "index.html"
   },

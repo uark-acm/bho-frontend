@@ -3,12 +3,13 @@ import { FunctionComponent, useState } from 'react';
 import { Container, IconButton, Card, CardMedia } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import './ItemCard.css';
 import { ViewItemModal } from './ViewItemModal';
 import { useAppDispatch } from '../redux/redux-config/hooks';
 import { addToCart, removeFromCart } from '../redux/actions/Cart.actions';
 
-type ItemCardProps = { item: BHOItem; added?: boolean };
+type ItemCardProps = { item: BHOItem; added?: boolean; admin?: boolean };
 
 export const ItemCard: FunctionComponent<ItemCardProps> = (
     props: ItemCardProps
@@ -44,12 +45,21 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                     image={props.item.image}
                     title="Image"
                 >
-                    {props.item.in_stock && (
+                    {(props.admin || props.item.in_stock) && (
                         <IconButton
                             className="addButton"
                             onClick={handleCornerButtonClick}
                         >
-                            {isAdded ? (
+                            {props.admin ? (
+                                <InfoOutlinedIcon
+                                    style={{
+                                        stroke: 'white',
+                                        scale: '130%',
+                                        strokeWidth: 0.25,
+                                        color: 'white',
+                                    }}
+                                />
+                            ) : isAdded ? (
                                 <ClearIcon
                                     style={{
                                         stroke: 'white',
@@ -71,13 +81,21 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                         </IconButton>
                     )}
                 </CardMedia>
-                <div className="textDiv">
-                    <div className="nameText">{props.item.name}</div>
+                <div className={`textDiv ${props.admin ? 'mb-3' : 'mb-6'}`}>
+                    <div className={`nameText ${props.admin ? '' : 'mb-2'}`}>
+                        {props.item.name}
+                    </div>
                     <div className="sizeText">{props.item.size}</div>
+                    {props.admin && (
+                        <div className="text-center text-sm font-semibold text-slate-600">
+                            ID: {props.item.id}
+                        </div>
+                    )}
                 </div>
             </Card>
             <ViewItemModal
                 item={props.item}
+                admin={props.admin}
                 added={props.added}
                 open={openModal}
                 setOpen={setOpenModal}
