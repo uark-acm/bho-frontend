@@ -13,6 +13,10 @@ import './InputBar.css';
 
 type InputBarProps = {
     admin?: boolean;
+    searchInput: string;
+    onSearch: (value: string) => void;
+    idInput?: number | undefined;
+    onIdChange?: (value: number | undefined) => void;
 };
 
 export const InputBar: FunctionComponent<InputBarProps> = (
@@ -20,19 +24,21 @@ export const InputBar: FunctionComponent<InputBarProps> = (
 ) => {
     const [clothingType, setClothingType] = useState('');
     const [size, setSize] = useState('');
-    const [searchInput, setSearchInput] = useState('');
-    const [idCode, setIdCode] = useState<number | undefined>();
 
     const handleIdCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         if (value === '') {
-            setIdCode(undefined);
+            props.onIdChange && props.onIdChange(undefined);
             return;
         }
         const intValue = parseInt(value, 10);
         if (!isNaN(intValue)) {
-            setIdCode(intValue);
+            props.onIdChange && props.onIdChange(intValue);
         }
+    };
+
+    const handleSearch = (value: string) => {
+        props.onSearch(value);
     };
 
     return (
@@ -41,8 +47,8 @@ export const InputBar: FunctionComponent<InputBarProps> = (
                 <Grid item xs={props.admin ? 6 : 8} className="searchGrid">
                     <TextField
                         placeholder="Search"
-                        value={searchInput}
-                        onChange={(e) => setSearchInput(e.target.value)}
+                        value={props.searchInput}
+                        onChange={(e) => handleSearch(e.target.value)}
                         fullWidth
                     />
                 </Grid>
@@ -51,7 +57,9 @@ export const InputBar: FunctionComponent<InputBarProps> = (
                         <TextField
                             placeholder="ID Code"
                             type="number"
-                            value={idCode === undefined ? '' : idCode}
+                            value={
+                                props.idInput === undefined ? '' : props.idInput
+                            }
                             onChange={handleIdCodeChange}
                             inputProps={{ min: 0 }}
                             fullWidth
@@ -98,7 +106,11 @@ export const InputBar: FunctionComponent<InputBarProps> = (
                     <IconButton
                         color="error"
                         className="searchButton"
-                        onClick={() => alert('pls add prettier jack')}
+                        onClick={() =>
+                            alert(
+                                'this does nothing and idgaf because dynamic filtering is better'
+                            )
+                        }
                     >
                         <SearchIcon style={{ color: 'white' }} />
                     </IconButton>

@@ -46,4 +46,13 @@ export const BHOItems: BHOItem[] = [
         size: 'S',
         image: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=700',
     },
+    {
+        id: 5,
+        name: 'Hard Black Blazer',
+        in_stock: false,
+        description: 'stuff',
+        category_id: 3,
+        size: 'S',
+        image: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=700',
+    },
 ];
