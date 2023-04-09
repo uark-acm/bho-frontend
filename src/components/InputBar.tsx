@@ -11,7 +11,9 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import './InputBar.css';
 
-type InputBarProps = {};
+type InputBarProps = {
+    admin?: boolean;
+};
 
 export const InputBar: FunctionComponent<InputBarProps> = (
     props: InputBarProps
@@ -19,11 +21,24 @@ export const InputBar: FunctionComponent<InputBarProps> = (
     const [clothingType, setClothingType] = useState('');
     const [size, setSize] = useState('');
     const [searchInput, setSearchInput] = useState('');
+    const [idCode, setIdCode] = useState<number | undefined>();
+
+    const handleIdCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (value === '') {
+            setIdCode(undefined);
+            return;
+        }
+        const intValue = parseInt(value, 10);
+        if (!isNaN(intValue)) {
+            setIdCode(intValue);
+        }
+    };
 
     return (
         <div className="inputBarContainer">
             <Grid container alignItems="center" spacing={0.5}>
-                <Grid item xs={8} className="searchGrid">
+                <Grid item xs={props.admin ? 6 : 8} className="searchGrid">
                     <TextField
                         placeholder="Search"
                         value={searchInput}
@@ -31,6 +46,18 @@ export const InputBar: FunctionComponent<InputBarProps> = (
                         fullWidth
                     />
                 </Grid>
+                {props.admin && (
+                    <Grid item xs={2} className="idGrid">
+                        <TextField
+                            placeholder="ID Code"
+                            type="number"
+                            value={idCode === undefined ? '' : idCode}
+                            onChange={handleIdCodeChange}
+                            inputProps={{ min: 0 }}
+                            fullWidth
+                        />
+                    </Grid>
+                )}
                 <Grid item xs={1.88}>
                     <FormControl fullWidth>
                         <InputLabel id="clothing-type-label">

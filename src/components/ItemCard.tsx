@@ -8,7 +8,7 @@ import { ViewItemModal } from './ViewItemModal';
 import { useAppDispatch } from '../redux/redux-config/hooks';
 import { addToCart, removeFromCart } from '../redux/actions/Cart.actions';
 
-type ItemCardProps = { item: BHOItem; added: boolean };
+type ItemCardProps = { item: BHOItem; added?: boolean };
 
 export const ItemCard: FunctionComponent<ItemCardProps> = (
     props: ItemCardProps

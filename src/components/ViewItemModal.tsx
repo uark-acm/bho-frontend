@@ -16,7 +16,7 @@ import { removeFromCart, addToCart } from '../redux/actions/Cart.actions';
 
 type ViewItemModalProps = {
     item: BHOItem;
-    added: boolean;
+    added?: boolean;
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
