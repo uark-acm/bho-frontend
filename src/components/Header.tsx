@@ -63,8 +63,12 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar position="static" style={{ background: '#ffffff' }}>
-            <Container maxWidth="xl">
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar
+                position="static"
+                style={{ background: '#ffffff' }}
+                sx={{ paddingRight: 5, paddingLeft: 5 }}
+            >
                 <Toolbar disableGutters>
                     {/* this is wehere the image logo should be the abdicon */}
                     <Box
@@ -236,8 +240,8 @@ function ResponsiveAppBar() {
                         ></Menu>
                     </Box>
                 </Toolbar>
-            </Container>
-        </AppBar>
+            </AppBar>
+        </Box>
     );
 }
 
