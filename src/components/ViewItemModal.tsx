@@ -16,7 +16,8 @@ import { removeFromCart, addToCart } from '../redux/actions/Cart.actions';
 
 type ViewItemModalProps = {
     item: BHOItem;
-    added: boolean;
+    admin?: boolean;
+    added?: boolean;
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -85,7 +86,9 @@ export const ViewItemModal: FunctionComponent<ViewItemModalProps> = (
                             onClick={handleAddClick}
                         >
                             {props.item.in_stock
-                                ? isAdded
+                                ? props.admin
+                                    ? 'In Stock'
+                                    : isAdded
                                     ? 'Remove from Cart'
                                     : 'Add to Cart'
                                 : 'Out of Stock'}

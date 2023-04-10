@@ -10,6 +10,7 @@ import NewItemFormScreen from './screens/NewItemFormScreen';
 import Header from './components/Header';
 import CheckoutFormScreen from './screens/CheckoutFormScreen';
 import TestingReduxComponent from './components/TestingReduxComponent';
+import AdminInventoryScreen from './screens/AdminInventoryScreen';
 
 function App() {
     const store = createStore(
@@ -23,15 +24,19 @@ function App() {
                 <TestingReduxComponent />
                 <Header />
                 <Routes>
-                    <Route
-                        path="/viewInventory"
-                        element={<ViewInventoryScreen />}
-                    />
                     <Route index path="/*" element={<HomeScreen />} />
                     <Route path="/newItem" element={<NewItemFormScreen />} />
                     <Route
                         path="/checkout"
                         element={<CheckoutFormScreen />}
+                    ></Route>
+                    <Route
+                        path="/viewInventory"
+                        element={<ViewInventoryScreen />}
+                    />
+                    <Route
+                        path="/adminInventory"
+                        element={<AdminInventoryScreen />}
                     ></Route>
                 </Routes>
             </BrowserRouter>
