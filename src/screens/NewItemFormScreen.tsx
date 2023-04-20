@@ -2,18 +2,26 @@ import React, { useState, FunctionComponent } from 'react';
 import { Grid, Select, TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import './NewItemFormScreen.css';
+import axios from 'axios';
 
 type NewItemFormScreenProps = {};
+type NewItemFormScreenState = {
+    itemName: String,
+    itemCategory: String,
+    itemSize: String,
+    itemDescription: String,
+    itemPhoto: File | null,
+};
 
 const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
     props: NewItemFormScreenProps
 ) => {
-    const [itemValues, setItemValues] = useState({
+    const [itemValues, setItemValues] = useState<NewItemFormScreenState>({
         itemName: '',
         itemCategory: '',
         itemSize: '',
         itemDescription: '',
-        itemPhoto: '',
+        itemPhoto: null,
     });
 
     const textFieldBoxesSx = { mb: '10%', ml: '5%' };
@@ -112,8 +120,9 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                     <label>Select an item photo and drop here</label>
                     <label className="gray-label">
                         JPG, PNG or PDF, file size no more than 10MB
+                        
                     </label>
-                    <Button variant="outlined">Select File</Button>
+                    <input type="file" accept="image/*" />
                 </Box>
                 <Box
                     maxWidth="sm"

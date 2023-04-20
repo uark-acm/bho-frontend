@@ -34,6 +34,7 @@
     "@types/react": "^17.0.43",
     "@types/react-dom": "^18.0.11",
     "@uark-acm/bho-data-models": "^1.4.0",
+    "axios": "^1.3.5",
     "dayjs": "^1.11.7",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
