@@ -15,6 +15,10 @@ const HomeScreen: FunctionComponent<HomeScreenProps> = (
             <Link to="/viewInventory" className="underline text-blue-600 ">
                 View Items
             </Link>
+            <br></br>
+            <Link to="/checkInOut" className="underline text-blue-600 ">
+                Check In Out
+            </Link>
         </>
     );
 };

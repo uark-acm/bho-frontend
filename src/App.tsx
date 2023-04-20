@@ -11,6 +11,7 @@ import Header from './components/Header';
 import CheckoutFormScreen from './screens/CheckoutFormScreen';
 import TestingReduxComponent from './components/TestingReduxComponent';
 import AdminInventoryScreen from './screens/AdminInventoryScreen';
+import CheckInOutScreen from './screens/CheckInOutScreen';
 
 function App() {
     const store = createStore(
@@ -37,6 +38,10 @@ function App() {
                     <Route
                         path="/adminInventory"
                         element={<AdminInventoryScreen />}
+                    ></Route>
+                    <Route
+                        path="/checkInOut"
+                        element={<CheckInOutScreen />}
                     ></Route>
                 </Routes>
             </BrowserRouter>
