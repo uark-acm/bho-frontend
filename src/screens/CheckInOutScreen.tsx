@@ -44,7 +44,7 @@ const CheckInOutScreen: FunctionComponent<CheckInOutScreenProps> = () => {
                 <QrReader
                     onResult={(result, error) => {
                         if (result && scanItemRef.current) {
-                            // console.log(result.getText());
+                            console.log(result.getText());
                             setButtonColor('#A51E36');
                             scanItemRef.current = false;
                         }
