@@ -104,3 +104,12 @@
 .vim-card-content > p:last-child {
     margin-bottom: 0;
 }
+
+.vim-card-content .MuiTextField-root,
+.vim-card-content .MuiFormControl-root {
+    margin-bottom: 24px;
+}
+  
+.vim-card-btns .MuiIconButton-root {
+    margin-left: 16px;
+}
