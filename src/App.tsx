@@ -12,6 +12,7 @@ import CheckoutFormScreen from './screens/CheckoutFormScreen';
 import TestingReduxComponent from './components/TestingReduxComponent';
 import AdminInventoryScreen from './screens/AdminInventoryScreen';
 import CheckInOutScreen from './screens/CheckInOutScreen';
+import Login from './screens/Login';
 
 function App() {
     const store = createStore(
@@ -43,6 +44,7 @@ function App() {
                         path="/checkInOut"
                         element={<CheckInOutScreen />}
                     ></Route>
+                    <Route path="/Login" element={<Login />}></Route>
                 </Routes>
             </BrowserRouter>
         </Provider>
