@@ -35,6 +35,7 @@
     "@types/react-dom": "^18.0.11",
     "@uark-acm/bho-data-models": "^1.4.0",
     "dayjs": "^1.11.7",
+    "firebase": "^9.21.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-qr-reader": "^3.0.0-beta-1",
