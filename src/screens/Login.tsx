@@ -26,10 +26,10 @@ const Login = () => {
             });
     };
 
-    const onRegister = async (e: any) => {
+    const onRegister = (e: any) => {
         e.preventDefault();
 
-        await createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const userJWT = userCredential.user.getIdToken();
                 navigate('/');

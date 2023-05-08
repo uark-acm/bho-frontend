@@ -33,7 +33,7 @@ const HomeScreen: FunctionComponent<HomeScreenProps> = (
                 Check In Out
             </Link>
             <br></br>
-            <Link to="/Login" className="underline text-blue-600 ">
+            <Link to="/login" className="underline text-blue-600 ">
                 Login
             </Link>
         </>
