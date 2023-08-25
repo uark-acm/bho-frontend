@@ -19,7 +19,7 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
 
     const dispatch = useAppDispatch();
 
-    const handleCardClick = () => {
+    const handleModalOpen = () => {
         setOpenModal(true);
     };
 
@@ -38,7 +38,7 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                         ? '#FFFFFF'
                         : '#B3B3B3',
                 }}
-                onClick={handleCardClick}
+                onClick={handleModalOpen}
             >
                 <CardMedia
                     className="image"
@@ -48,7 +48,11 @@ export const ItemCard: FunctionComponent<ItemCardProps> = (
                     {(props.admin || props.item.in_stock) && (
                         <IconButton
                             className="addButton"
-                            onClick={handleCornerButtonClick}
+                            onClick={
+                                props.admin
+                                    ? handleModalOpen
+                                    : handleCornerButtonClick
+                            }
                         >
                             {props.admin ? (
                                 <InfoOutlinedIcon
