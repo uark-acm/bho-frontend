@@ -2,6 +2,7 @@ import React, { useState, FunctionComponent } from 'react';
 import { Grid, Select, TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import './NewItemFormScreen.css';
+import { useFilePicker } from 'use-file-picker';
 
 type NewItemFormScreenProps = {};
 
@@ -15,6 +16,35 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
         itemDescription: '',
         itemPhoto: '',
     });
+
+    const [openFileSelector, { filesContent, loading, errors }] = useFilePicker(
+        {
+            readAs: 'DataURL',
+            accept: 'image/*',
+            multiple: true,
+            onFilesSelected: ({ plainFiles, filesContent, errors }) => {
+                // this callback is always called, even if there are errors
+                console.log(
+                    'onFilesSelected',
+                    plainFiles,
+                    filesContent,
+                    errors
+                );
+            },
+            onFilesRejected: ({ errors }) => {
+                // this callback is called when there were validation errors
+                console.log('onFilesRejected', errors);
+            },
+            onFilesSuccessfulySelected: ({ plainFiles, filesContent }) => {
+                // this callback is called when there were no validation errors
+                console.log(
+                    'onFilesSuccessfulySelected',
+                    plainFiles,
+                    filesContent
+                );
+            },
+        }
+    );
 
     const textFieldBoxesSx = { mb: '10%', ml: '5%' };
 
@@ -113,7 +143,12 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                     <label className="gray-label">
                         JPG, PNG or PDF, file size no more than 10MB
                     </label>
-                    <Button variant="outlined">Select File</Button>
+                    <Button
+                        variant="outlined"
+                        onClick={() => openFileSelector()}
+                    >
+                        Select File
+                    </Button>
                 </Box>
                 <Box
                     maxWidth="sm"
