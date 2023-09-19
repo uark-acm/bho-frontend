@@ -12,7 +12,8 @@ import CheckoutFormScreen from './screens/CheckoutFormScreen';
 import TestingReduxComponent from './components/TestingReduxComponent';
 import AdminInventoryScreen from './screens/AdminInventoryScreen';
 import CheckInOutScreen from './screens/CheckInOutScreen';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
     const store = createStore(
         reducers,
@@ -24,6 +25,7 @@ function App() {
             <BrowserRouter>
                 <TestingReduxComponent />
                 <Header />
+                <ToastContainer />
                 <Routes>
                     <Route index path="/*" element={<HomeScreen />} />
                     <Route path="/newItem" element={<NewItemFormScreen />} />
