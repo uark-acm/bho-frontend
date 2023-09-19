@@ -2,6 +2,10 @@ import React, { useState, FunctionComponent } from 'react';
 import { Grid, Select, TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import './NewItemFormScreen.css';
+import { useFilePicker } from 'use-file-picker';
+import { toast } from 'react-toastify';
+
+//TODO: add form validation, get rid of unecessary styles, remove mui stuff, add image viewer
 
 type NewItemFormScreenProps = {};
 
@@ -13,8 +17,43 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
         itemCategory: '',
         itemSize: '',
         itemDescription: '',
-        itemPhoto: '',
     });
+
+    const [itemPhoto, setItemPhoto] = useState<File | undefined>();
+    //const [itemURL, setItemURL] = useState<string | undefined>();
+
+    const [openFileSelector, { filesContent, loading, errors }] = useFilePicker(
+        {
+            readAs: 'DataURL',
+            accept: 'image/*',
+            multiple: true,
+            onFilesSelected: ({ plainFiles, filesContent, errors }) => {
+                // this callback is always called, even if there are errors
+                console.log(
+                    'onFilesSelected',
+                    plainFiles,
+                    filesContent,
+                    errors
+                );
+            },
+            onFilesRejected: ({ errors }) => {
+                // this callback is called when there were validation errors
+                console.log('onFilesRejected', errors);
+                toast.success('File failed with following error: ' + errors);
+            },
+            onFilesSuccessfulySelected: ({ plainFiles, filesContent }) => {
+                // this callback is called when there were no validation errors
+                console.log(
+                    'onFilesSuccessfulySelected',
+                    plainFiles,
+                    filesContent
+                );
+                toast.success('File uploaded successfully');
+                setItemPhoto(plainFiles[0]);
+                //const objectUrl = URL.createObjectURL(plainFiles[0]);
+            },
+        }
+    );
 
     const textFieldBoxesSx = { mb: '10%', ml: '5%' };
 
@@ -109,11 +148,20 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                         flexDirection: 'column',
                     }}
                 >
-                    <label>Select an item photo and drop here</label>
+                    <label>
+                        {itemPhoto
+                            ? (itemPhoto as File).name
+                            : 'Select a photo for this item'}
+                    </label>
                     <label className="gray-label">
                         JPG, PNG or PDF, file size no more than 10MB
                     </label>
-                    <Button variant="outlined">Select File</Button>
+                    <Button
+                        variant="outlined"
+                        onClick={() => openFileSelector()}
+                    >
+                        Select File
+                    </Button>
                 </Box>
                 <Box
                     maxWidth="sm"
@@ -125,7 +173,12 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                         margin: 'auto',
                     }}
                 >
-                    <button className="add-item-button">Add Item </button>
+                    <button
+                        className="add-item-button cursor-pointer"
+                        onClick={() => console.log('submit')}
+                    >
+                        Add Item{' '}
+                    </button>
                 </Box>
             </Grid>
         </Grid>
