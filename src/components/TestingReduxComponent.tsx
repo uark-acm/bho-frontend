@@ -6,6 +6,7 @@ import { ClothingItemsState } from '../redux/reducers/ClothingItems.reducer';
 import { OrdersState } from '../redux/reducers/Orders.reducer';
 import { useAppDispatch, useAppSelector } from '../redux/redux-config/hooks';
 import Loadable from '../redux/redux-config/loadable';
+import { fetchBHOItemCategories } from '../redux/actions/BHOItemCategory.actions';
 
 type TestingReduxComponentProps = {};
 
@@ -26,6 +27,7 @@ const TestingReduxComponent: FunctionComponent<TestingReduxComponentProps> = (
         if (!clothingItems.data) {
             dispatch(fetchClothingItems());
         }
+        dispatch(fetchBHOItemCategories());
     }, [dispatch]);
 
     switch (clothingItems.status) {

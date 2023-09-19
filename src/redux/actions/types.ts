@@ -10,4 +10,7 @@ export enum Action {
 
     ADD_TO_CART,
     REMOVE_FROM_CART,
+
+    FETCH_CATEGORIES,
+    CREATE_CATEGORY,
 }
