@@ -10,7 +10,7 @@ import { BHOItems } from '../mocks/BHOItems.model';
 import {
     UserClassification,
     UserCollege,
-    CreateOrderRequest,
+    BHOCreateOrderRequest as CreateOrderRequest,
 } from '@uark-acm/bho-data-models/lib';
 import FormInputField from '../components/FormInputField';
 

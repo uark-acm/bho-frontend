@@ -1,9 +1,13 @@
 import React, { useState, FunctionComponent } from 'react';
-import { Grid, Select, TextField, Button } from '@mui/material';
+import { Grid, Select, TextField, Button, MenuItem } from '@mui/material';
 import { Box } from '@mui/system';
 import './NewItemFormScreen.css';
 import { useFilePicker } from 'use-file-picker';
 import { toast } from 'react-toastify';
+import { BHOItemCategory } from '@uark-acm/bho-data-models/lib';
+import { BHOItemCategoryState } from '../redux/reducers/BHOItemCategory.reducer';
+import Loadable from '../redux/redux-config/loadable';
+import { useAppSelector } from '../redux/redux-config/hooks';
 
 //TODO: add form validation, get rid of unecessary styles, remove mui stuff, add image viewer
 
@@ -12,6 +16,11 @@ type NewItemFormScreenProps = {};
 const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
     props: NewItemFormScreenProps
 ) => {
+    const categories: Loadable<BHOItemCategory[]> =
+        useAppSelector<BHOItemCategoryState>(
+            (state) => state.categories
+        ).categories;
+
     const [itemValues, setItemValues] = useState({
         itemName: '',
         itemCategory: '',
@@ -94,7 +103,17 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                             onChange={changeHandler}
                             hiddenLabel
                             fullWidth
-                        ></TextField>
+                        >
+                            {categories.data?.map((c) => (
+                                <MenuItem
+                                    className="hover:bg-slate-400"
+                                    key={c.id}
+                                    value={c.id}
+                                >
+                                    {c.name}
+                                </MenuItem>
+                            ))}
+                        </TextField>
                     </Box>
 
                     <Box sx={textFieldBoxesSx}>
@@ -175,7 +194,7 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                 >
                     <button
                         className="add-item-button cursor-pointer"
-                        onClick={() => console.log('submit')}
+                        onClick={() => console.log(categories.data)}
                     >
                         Add Item{' '}
                     </button>

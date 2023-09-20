@@ -1,19 +1,20 @@
 import { BHOItem, BHOItemCategory } from '@uark-acm/bho-data-models/lib';
 import { AnyAction } from 'redux';
 import { Action } from '../actions/types';
+import Loadable from '../redux-config/loadable';
 
 export interface BHOItemCategoryState {
-    categories: BHOItemCategory[];
+    categories: Loadable<BHOItemCategory[]>;
 }
 
 const DEFAULT_STATE: BHOItemCategoryState = {
-    categories: [],
+    categories: { status: 'loading' },
 };
 
 const BHOItemCategoryReducer = (state = DEFAULT_STATE, action: AnyAction) => {
     switch (action.type) {
         case Action.FETCH_CATEGORIES: {
-            return { ...state, clothingItems: action.payload };
+            return { ...state, categories: action.payload };
         }
         default:
             return state;
