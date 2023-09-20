@@ -1,6 +1,9 @@
 import { Dispatch } from 'react';
 import { Action } from './types';
-import { Order, CreateOrderRequest } from '@uark-acm/bho-data-models/lib';
+import {
+    Order,
+    BHOCreateOrderRequest as CreateOrderRequest,
+} from '@uark-acm/bho-data-models/lib';
 import Loadable from '../redux-config/loadable';
 import { rootURL } from '../../config/endpoints';
 

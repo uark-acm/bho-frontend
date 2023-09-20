@@ -1,6 +1,10 @@
 import { Dispatch } from 'react';
 import { Action } from './types';
-import { Order, BHOItemCategory } from '@uark-acm/bho-data-models/lib';
+import {
+    Order,
+    BHOItemCategory,
+    BHOCreateItemCategoryRequest,
+} from '@uark-acm/bho-data-models/lib';
 import Loadable from '../redux-config/loadable';
 import { rootURL } from '../../config/endpoints';
 
@@ -38,21 +42,25 @@ export const fetchBHOItemCategories = () => {
     };
 };
 
-/*
-export const createBHOItemCategory = (CreateOrderRequest: CreateOrderRequest) => {
-    return async (dispatch: Dispatch<OrderAction>) => {
-        dispatch({ type: Action.CREATE_ORDER, payload: { status: 'loading' } });
+export const createBHOItemCategory = (
+    createCategoryRequest: BHOCreateItemCategoryRequest
+) => {
+    return async (dispatch: Dispatch<BHOItemCategoryAction>) => {
+        dispatch({
+            type: Action.CREATE_CATEGORY,
+            payload: { status: 'loading' },
+        });
         try {
-            const data: Order[] = await (
-                await fetch(`${rootURL}/orders`)
+            const data: BHOItemCategory[] = await (
+                await fetch(`${rootURL}/categories`)
             ).json();
             dispatch({
-                type: Action.CREATE_ORDER,
+                type: Action.CREATE_CATEGORY,
                 payload: { status: 'success', data: data },
             });
         } catch (error) {
             dispatch({
-                type: Action.CREATE_ORDER,
+                type: Action.CREATE_CATEGORY,
                 payload: {
                     status: 'error',
                     errorMessage: (error as Error).message,
@@ -61,4 +69,3 @@ export const createBHOItemCategory = (CreateOrderRequest: CreateOrderRequest) =>
         }
     };
 };
-*/
