@@ -15,7 +15,13 @@ import logo from './BHO-Logo.png';
 import Badge from '@mui/material/Badge';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-const pages = ['About', 'Clothing', 'Accessories', 'Admin'];
+const pages = [
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/' },
+    { label: 'Clothing', path: '/viewInventory' },
+    { label: 'Accessories', path: '/' },
+    { label: 'Admin', path: '/adminInventory' },
+];
 
 const Custom = styled.button`
     background-color: #ad2c0c;
@@ -55,6 +61,12 @@ function ResponsiveAppBar() {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const handleButtonClick = (buttonPages) => {
+        console.log(buttonPages.label);
+        navigate(buttonPages.path);
+        handleCloseNavMenu();
     };
 
     const handleReviewOrderButton = () => {
@@ -143,11 +155,11 @@ function ResponsiveAppBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
+                                    key={page.label}
+                                    onClick={() => handleButtonClick(page)}
                                 >
                                     <Typography textAlign="center">
-                                        {page}
+                                        {page.label}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -188,8 +200,8 @@ function ResponsiveAppBar() {
                     >
                         {pages.map((page) => (
                             <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
+                                key={page.label}
+                                onClick={() => handleButtonClick(page)}
                                 sx={{
                                     my: 2,
                                     color: '#ad2c0c',
@@ -199,7 +211,7 @@ function ResponsiveAppBar() {
                                     fontSize: 17,
                                 }}
                             >
-                                {page}
+                                {page.label}
                             </Button>
                         ))}
                     </Box>
