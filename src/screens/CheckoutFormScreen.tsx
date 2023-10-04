@@ -102,6 +102,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                         <div className="ml-10">
                             <label className={spacingBetweenFields}>
                                 First Name
+                                <span style={{ color: 'red' }}> *</span>
                             </label>
                             <br />
                             <FormInputField
@@ -115,6 +116,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                             <br />
                             <label className={spacingBetweenFields}>
                                 Last Name
+                                <span style={{ color: 'red' }}> *</span>
                             </label>
                             <br />
                             <FormInputField
@@ -127,6 +129,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                             <br />
                             <label className={spacingBetweenFields}>
                                 Email
+                                <span style={{ color: 'red' }}> *</span>
                             </label>
                             <br />
                             <FormInputField
@@ -138,6 +141,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                             <br />
                             <label className={spacingBetweenFields}>
                                 Classification
+                                <span style={{ color: 'red' }}> *</span>
                             </label>
                             <FormInputField
                                 name="classification"
@@ -157,6 +161,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                             </FormInputField>
                             <label className={spacingBetweenFields}>
                                 College
+                                <span style={{ color: 'red' }}> *</span>
                             </label>
                             <br />
                             <FormInputField
@@ -200,6 +205,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                                 <br />
                                 <label className={spacingBetweenFields}>
                                     Pickup Date & Time
+                                    <span style={{ color: 'red' }}> *</span>
                                 </label>
                                 <br />
                                 <DateTimePicker
