@@ -8,6 +8,7 @@ import { BHOItemCategory } from '@uark-acm/bho-data-models/lib';
 import { BHOItemCategoryState } from '../redux/reducers/BHOItemCategory.reducer';
 import Loadable from '../redux/redux-config/loadable';
 import { useAppSelector } from '../redux/redux-config/hooks';
+import { ElectricScooterSharp } from '@mui/icons-material';
 
 //TODO: add form validation, get rid of unecessary styles, remove mui stuff, add image viewer
 
@@ -67,7 +68,28 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
     const textFieldBoxesSx = { mb: '10%', ml: '5%' };
 
     const changeHandler = (e: React.ChangeEvent<any>) => {
-        setItemValues({ ...itemValues, [e.target.id]: e.target.value });
+        const { id, value } = e.target;
+
+        if (id === 'itemCategory') {
+            setSelectedCategory(value);
+            const categorySizes = getCategorySizes(id);
+            setSizes(value);
+        } else {
+            setItemValues((prevItemValues) => ({ ...itemValues, [id]: value }));
+        }
+    };
+
+    const getCategorySizes = (id: number) => {
+        const category = categories.data?.find((c) => c.id === id);
+        return category?.sizes;
+    };
+
+    const setSizes = (categoryID: string) => {
+        return;
+    };
+
+    const setSelectedCategory = (value: string) => {
+        //const selectedCategory = value;
     };
 
     return (
@@ -96,8 +118,8 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                         <label>Item Category</label>
                         <TextField
                             size="small"
-                            select
-                            id="itemCategory"
+                            select // used to create a dropdown
+                            id="itemCategory" // props to alter appearance/behavior of TextField
                             name="itemCategory"
                             variant="filled"
                             onChange={changeHandler}
@@ -127,8 +149,17 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                             hiddenLabel
                             fullWidth
                             onChange={changeHandler}
-                        ></TextField>{' '}
-                        <br />
+                        >
+                            {categories.data?.map((c) => (
+                                <MenuItem
+                                    className="hover:bg-slate-400"
+                                    key={c.id}
+                                    value={c.id}
+                                >
+                                    {c.id}
+                                </MenuItem>
+                            ))}
+                        </TextField>
                     </Box>
 
                     <Box sx={textFieldBoxesSx}>
