@@ -89,6 +89,7 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
         }
         if (!itemValues.itemSize) {
             //setValidationErrors({ ...validationErrors, itemSize: true });
+            //Commented out until item size has proper data
         }
         if (!itemValues.itemDescription) {
             setValidationErrors({ ...validationErrors, itemDescription: true });
