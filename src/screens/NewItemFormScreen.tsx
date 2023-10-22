@@ -31,6 +31,14 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
     const [itemPhoto, setItemPhoto] = useState<File | undefined>();
     //const [itemURL, setItemURL] = useState<string | undefined>();
 
+    //This block right here handles checking to make sure that all the add item pieces have something in them
+    const [validationErrors, setValidationErrors] = useState({
+        itemName: false,
+        itemCategory: false,
+        itemSize: false,
+        itemDescription: false,
+    });
+
     const [openFileSelector, { filesContent, loading, errors }] = useFilePicker(
         {
             readAs: 'DataURL',
@@ -68,6 +76,44 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
 
     const changeHandler = (e: React.ChangeEvent<any>) => {
         setItemValues({ ...itemValues, [e.target.id]: e.target.value });
+    };
+
+    //goes through and checks each of the inputs to make sure there is something in each part.
+    const addItemHandler = () => {
+        if (!itemValues.itemName) {
+            setValidationErrors({ ...validationErrors, itemName: true });
+            console.log('issue');
+        }
+        if (!itemValues.itemCategory) {
+            setValidationErrors({ ...validationErrors, itemCategory: true });
+        }
+        if (!itemValues.itemSize) {
+            //setValidationErrors({ ...validationErrors, itemSize: true });
+        }
+        if (!itemValues.itemDescription) {
+            setValidationErrors({ ...validationErrors, itemDescription: true });
+        }
+
+        // Check if there are validation errors
+        if (
+            validationErrors.itemCategory ||
+            validationErrors.itemDescription ||
+            validationErrors.itemName ||
+            validationErrors.itemSize
+        ) {
+            // Handle validation errors (e.g., display an error message)
+            toast.error('Please fill in all required fields');
+            setValidationErrors({
+                ...validationErrors,
+                itemCategory: false,
+                itemDescription: false,
+                itemName: false,
+                itemSize: false,
+            });
+        } else {
+            // All fields are valid, you can proceed with adding the item
+            console.log('Adding item:', itemValues);
+        }
     };
 
     return (
@@ -194,7 +240,7 @@ const NewItemFormScreen: FunctionComponent<NewItemFormScreenProps> = (
                 >
                     <button
                         className="add-item-button cursor-pointer"
-                        onClick={() => console.log(categories.data)}
+                        onClick={addItemHandler}
                     >
                         Add Item{' '}
                     </button>
