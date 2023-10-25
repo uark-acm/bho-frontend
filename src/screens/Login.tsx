@@ -7,6 +7,9 @@ import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
+//added by Joe
+import './login.css';
+
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -45,55 +48,63 @@ const Login = () => {
         <>
             <main>
                 <section>
-                    <div>
+                    <div id="all">
                         <form>
-                            <div>
-                                <label htmlFor="email-address">
-                                    Email address
-                                </label>
-                                <input
-                                    id="email-address"
-                                    name="email"
-                                    type="email"
-                                    required
-                                    placeholder="Email address"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
+                            <div id="forms">
+                                <div id="email">
+                                    <label htmlFor="email-address">
+                                        Email address
+                                    </label>
+                                    <input
+                                        id="email-address"
+                                        name="email"
+                                        type="email"
+                                        required
+                                        placeholder="Email address"
+                                        onChange={(e) =>
+                                            setEmail(e.target.value)
+                                        }
+                                    />
+                                </div>
+
+                                <div id="password">
+                                    <label htmlFor="password">Password</label>
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        required
+                                        placeholder="Password"
+                                        onChange={(e) =>
+                                            setPassword(e.target.value)
+                                        }
+                                    />
+                                </div>
                             </div>
 
-                            <div>
-                                <label htmlFor="password">Password</label>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    required
-                                    placeholder="Password"
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                />
-                            </div>
-
-                            <div>
-                                <Button
-                                    variant="contained"
-                                    onClick={onLogin}
-                                    style={{
-                                        backgroundColor: 'red',
-                                    }}
-                                >
-                                    Login
-                                </Button>
-                                <Button
-                                    variant="contained"
-                                    onClick={onRegister}
-                                    style={{
-                                        backgroundColor: 'red',
-                                    }}
-                                >
-                                    Register
-                                </Button>
+                            <div id="buttons">
+                                <div>
+                                    <Button
+                                        variant="contained"
+                                        onClick={onLogin}
+                                        style={{
+                                            backgroundColor: 'red',
+                                        }}
+                                    >
+                                        Login
+                                    </Button>
+                                </div>
+                                <div>
+                                    <Button
+                                        variant="contained"
+                                        onClick={onRegister}
+                                        style={{
+                                            backgroundColor: 'red',
+                                        }}
+                                    >
+                                        Register
+                                    </Button>
+                                </div>
                             </div>
                         </form>
                     </div>
