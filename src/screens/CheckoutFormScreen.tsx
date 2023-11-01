@@ -3,6 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { toast } from 'react-toastify';
 import { Grid, MenuItem } from '@mui/material';
 import { ItemCard } from '../components/ItemCard';
 import dayjs, { Dayjs } from 'dayjs';
@@ -69,6 +70,64 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
     };
     // do on submit
     const checkValidDate = () => {};
+
+    //This block right here handles checking to make sure that all the add item pieces have something in them
+    const [validationErrors, setValidationErrors] = useState({
+        firstName: false,
+        lastName: false,
+        email: false,
+        classification: false,
+        college: false,
+        reason: false,
+    });
+
+    //goes through and checks each of the inputs to make sure there is something in each part.
+    const checkoutHandler = () => {
+        if (!formValues.firstName) {
+            setValidationErrors({ ...validationErrors, firstName: true });
+        }
+        if (!formValues.lastName) {
+            setValidationErrors({ ...validationErrors, lastName: true });
+        }
+        if (!formValues.email) {
+            setValidationErrors({ ...validationErrors, email: true });
+        }
+        if (!formValues.classification) {
+            setValidationErrors({ ...validationErrors, classification: true });
+        }
+        if (!formValues.college) {
+            setValidationErrors({ ...validationErrors, college: true });
+        }
+        if (!formValues.reason) {
+            setValidationErrors({ ...validationErrors, reason: true });
+        }
+
+        // Check if there are validation errors
+        if (
+            validationErrors.firstName ||
+            validationErrors.lastName ||
+            validationErrors.email ||
+            validationErrors.classification ||
+            validationErrors.college ||
+            validationErrors.reason
+        ) {
+            // Handle validation errors (e.g., display an error message)
+            toast.error('Please fill in all required fields');
+            setValidationErrors({
+                ...validationErrors,
+                firstName: false,
+                lastName: false,
+                email: false,
+                classification: false,
+                college: false,
+                reason: false,
+            });
+        } else {
+            // All fields are valid, you can proceed with adding the item
+            console.log('Adding item:', formValues);
+            createOrderRequestObject();
+        }
+    };
 
     const formValidation = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -212,7 +271,7 @@ const CheckoutFormScreen: FunctionComponent<CheckoutFormScreenProps> = (
                         <div className="flex justify-center items-center mt-5">
                             <div>
                                 <button
-                                    onClick={formValidation}
+                                    onClick={checkoutHandler}
                                     className=" bg-red-700 text-white border-4 border-red-700 rounded-full py-2 px-5 m-5 outline-red-700 outline-2 !important"
                                 >
                                     Submit Order
