@@ -57,7 +57,7 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
-    const handlenavigation = (pages: any) => {
+    const handleNavigation = (pages: any) => {
         switch (pages) {
           case "About":
             navigate('/aboutPage');
@@ -161,7 +161,7 @@ function ResponsiveAppBar() {
                             {pages.map((page) => (
                                 <MenuItem
                                     key={page}
-                                    onClick={() => handlenavigation(page)}
+                                    onClick={() => handleNavigation(page)}
                                 >
                                     <Typography textAlign="center">
                                         {page}
@@ -206,7 +206,7 @@ function ResponsiveAppBar() {
                         {pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={() => handlenavigation(page)}
+                                onClick={() => handleNavigation(page)}
                                 sx={{
                                     my: 2,
                                     color: '#ad2c0c',
