@@ -57,6 +57,23 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
 
+    const handleNavigation = (pages: any) => {
+        switch (pages) {
+          case "About":
+            navigate('/aboutPage');
+            break;
+          case "Clothing":
+            navigate('/viewInventory');
+            break;
+          case "Accessories":
+            navigate('/accessoriesInventory');
+            break;
+          case "Admin":
+            navigate('/adminInventory');
+            break;
+        }
+      };
+    
     const handleReviewOrderButton = () => {
         const path = `/checkout`;
         navigate(path);
@@ -144,7 +161,7 @@ function ResponsiveAppBar() {
                             {pages.map((page) => (
                                 <MenuItem
                                     key={page}
-                                    onClick={handleCloseNavMenu}
+                                    onClick={() => handleNavigation(page)}
                                 >
                                     <Typography textAlign="center">
                                         {page}
@@ -189,7 +206,7 @@ function ResponsiveAppBar() {
                         {pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleCloseNavMenu}
+                                onClick={() => handleNavigation(page)}
                                 sx={{
                                     my: 2,
                                     color: '#ad2c0c',
